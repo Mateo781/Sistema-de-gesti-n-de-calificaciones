@@ -15,47 +15,10 @@
 
 <div class="app">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <?php
 
-    <div>
-
-      <div class="logo">
-        <h2>E.E.S. N° 42</h2>
-        <span>RITE · 2025</span>
-      </div>
-
-      <nav class="menu">
-
-        <a href="#">Inicio</a>
-
-        <a href="#">Ver calificaciones</a>
-
-        <a href="#" class="active">
-          Materias pendientes
-          <span class="badge-menu">3</span>
-        </a>
-
-        <a href="#">Intensificación</a>
-
-        <a href="#">Trayectoria</a>
-
-        <a href="#">Informes RITE</a>
-
-      </nav>
-
-    </div>
-
-    <div class="user-card">
-      <div class="avatar">GL</div>
-
-      <div>
-        <strong>González, Lucía</strong>
-        <span>DNI 45.123.678</span>
-      </div>
-    </div>
-
-  </aside>
+  require "../partials/navbar.php";
+  ?>
 
   <!-- MAIN -->
   <main class="main-content">

@@ -17,66 +17,10 @@
 <div class="page-layout">
 
   <!-- ── SIDEBAR ── -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-top">
-      <div class="brand">
-        <div class="brand-mark">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <path d="M11 2L3 7v3h16V7L11 2z" fill="white" opacity=".9"/>
-            <rect x="4" y="11" width="3" height="6" rx="1" fill="white" opacity=".7"/>
-            <rect x="9.5" y="11" width="3" height="6" rx="1" fill="white" opacity=".7"/>
-            <rect x="15" y="11" width="3" height="6" rx="1" fill="white" opacity=".7"/>
-            <rect x="3" y="17" width="16" height="1.5" rx=".75" fill="white" opacity=".5"/>
-          </svg>
-        </div>
-        <div>
-          <div class="brand-name">E.E.S.T. N° 1</div>
-          <div class="brand-sub">Técnica N° 1 de Vicente López</div>
-        </div>
-      </div>
-    </div>
+  <?php
 
-    <nav class="sidebar-nav">
-      <div class="nav-group-label">Principal</div>
-      <a href="../index.html" class="nav-link">
-        <svg class="nav-ico" viewBox="0 0 18 18" fill="none"><path d="M9 2L2 7v9h4v-4h6v4h4V7L9 2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-        Inicio
-      </a>
-      <a href="#" class="nav-link active">
-        <svg class="nav-ico" viewBox="0 0 18 18" fill="none"><rect x="2.5" y="2" width="13" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><line x1="6" y1="6" x2="12" y2="6" stroke="currentColor" stroke-width="1.3"/><line x1="6" y1="9" x2="12" y2="9" stroke="currentColor" stroke-width="1.3"/><line x1="6" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="1.3"/></svg>
-        Ver calificaciones
-      </a>
-      <a href="materias-pendientes.html" class="nav-link">
-        <svg class="nav-ico" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M9 6v3.5l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Materias pendientes
-        <span class="nav-pill">3</span>
-      </a>
-      <div class="nav-group-label">Gestión</div>
-      <a href="#" class="nav-link">
-        <svg class="nav-ico" viewBox="0 0 18 18" fill="none"><path d="M9 2v12M5 9l4 5 4-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="14" width="12" height="2.5" rx=".8" stroke="currentColor" stroke-width="1.3"/></svg>
-        Intensificación
-      </a>
-      <a href="#" class="nav-link">
-        <svg class="nav-ico" viewBox="0 0 18 18" fill="none"><circle cx="3" cy="9" r="1.8" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="9" r="1.8" stroke="currentColor" stroke-width="1.3"/><circle cx="15" cy="9" r="1.8" stroke="currentColor" stroke-width="1.3"/><line x1="4.8" y1="9" x2="7.2" y2="9" stroke="currentColor" stroke-width="1.3"/><line x1="10.8" y1="9" x2="13.2" y2="9" stroke="currentColor" stroke-width="1.3"/></svg>
-        Trayectoria
-      </a>
-      <a href="#" class="nav-link">
-        <svg class="nav-ico" viewBox="0 0 18 18" fill="none"><rect x="2.5" y="2" width="13" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 5.5h7M5.5 8h7M5.5 10.5h4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10.5 13l1.5 1.5L14.5 12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Informes RITE
-      </a>
-    </nav>
-
-    <div class="sidebar-user">
-      <div class="user-avatar">JM</div>
-      <div class="user-info">
-        <div class="user-name">Jheysmar Mendieta</div>
-        <div class="user-dni">DNI 95.382.269</div>
-      </div>
-    </div>
-  </aside>
-
-  <!-- ── SIDEBAR OVERLAY ── -->
-  <div class="overlay" id="overlay"></div>
+  require "../partials/navbar.php";
+  ?>
 
   <!-- ── MAIN ── -->
   <main class="main">
