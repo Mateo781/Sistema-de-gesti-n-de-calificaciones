@@ -1,3 +1,42 @@
+<?php
+// Determinar la página actual
+$p = isset($_GET['p']) ? $_GET['p'] : 'inicio';
+
+// Configuración de páginas
+$pages = [
+    'inicio' => [
+        'title' => 'RITE — Panel del Alumno',
+        'css' => 'css/styles.css',
+        'content' => 'paginas/inicio.php',
+        'js' => 'js/script.js'
+    ],
+    'calificaciones' => [
+        'title' => 'RITE — Ver Calificaciones',
+        'css' => 'css/calificaciones.css',
+        'content' => 'paginas/calificaciones.php',
+        'js' => 'js/calificaciones.js'
+    ],
+    'situacion' => [
+        'title' => 'RITE — Situación Académica',
+        'css' => 'css/situacion.css',
+        'content' => 'paginas/situacion.php',
+        'js' => 'js/situacion.js'
+    ],
+    'pendientes' => [
+        'title' => 'RITE — Materias Pendientes',
+        'css' => 'css/materias-pendientes.css',
+        'content' => 'paginas/materias-pendientes.php',
+        'js' => 'js/materias-pendientes.js'
+    ]
+];
+
+// Fallback por si la página no existe
+if (!array_key_exists($p, $pages)) {
+    $p = 'inicio';
+}
+
+$currentPage = $pages[$p];
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,190 +44,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1a2d5a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <title>RITE — Panel del Alumno</title>
+  <title><?php echo $currentPage['title']; ?></title>
+  
+  <!-- Usar la misma línea de estilos de css/styles.css como base global -->
   <link rel="stylesheet" href="css/styles.css" />
+  
+  <!-- Estilos específicos de la sección activa -->
+  <?php if ($p !== 'inicio'): ?>
+    <link rel="stylesheet" href="<?php echo $currentPage['css']; ?>" />
+  <?php endif; ?>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <?php
+  <!-- Sidebar / Navbar -->
+  <?php require "./partials/navbar.php"; ?>
 
-  require "./partials/navbar.php";
-  ?>
-
-  <!-- Mobile overlay -->
+  <!-- Mobile overlays para compatibilidad con distintos scripts -->
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="overlay" id="overlay"></div>
 
-  <!-- ═══════════════════════════════════════════
-       MAIN CONTENT
-  ═══════════════════════════════════════════ -->
-  <main class="main-content">
+  <!-- Content of the current page -->
+  <?php include $currentPage['content']; ?>
 
-    <!-- HEADER -->
-    <header class="top-header">
-      <div class="header-left">
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-          <svg viewBox="0 0 20 20" width="20" height="20"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </button>
-        <div class="header-title-block">
-          <h1 class="header-title">Inicio</h1>
-          <div class="header-breadcrumb">
-            <span class="breadcrumb-year">7° 2° Grupo B</span>
-            <span class="breadcrumb-sep">•</span>
-            <span class="breadcrumb-division">Orientación Programacion</span>
-          </div>
-        </div>
-      </div>
-      <div class="header-right">
-        <div class="header-meta">
-          <span class="ciclo-badge">Ciclo 2026</span>
-          <span class="update-text">Actualizado: 28 may 2025, 19:42</span>
-        </div>
-        <button class="btn-export">
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 11v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          Exportar PDF
-        </button>
-      </div>
-    </header>
-
-    <div class="content-body">
-
-      <!-- ─── SUMMARY CARDS ─── -->
-      <section class="summary-cards" aria-label="Resumen académico">
-        <div class="card summary-card" data-color="blue">
-          <div class="card-icon blue">
-            <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.94 5.5L10 14.5 5.06 17.2 6 11.7 2 7.8l5.5-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="card-body">
-            <span class="card-label">Promedio general</span>
-            <span class="card-value">7.4</span>
-            <span class="card-sub">Sobre 10 puntos</span>
-          </div>
-          <div class="card-bar blue"></div>
-        </div>
-
-        <div class="card summary-card" data-color="green">
-          <div class="card-icon green">
-            <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><path d="M4 10l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="card-body">
-            <span class="card-label">Materias aprobadas</span>
-            <span class="card-value">8</span>
-            <span class="card-sub">de 12 materias totales</span>
-          </div>
-          <div class="card-bar green"></div>
-        </div>
-
-        <div class="card summary-card" data-color="red">
-          <div class="card-icon red">
-            <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="7" x2="10" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="13.5" r="1" fill="currentColor"/></svg>
-          </div>
-          <div class="card-body">
-            <span class="card-label">Materias pendientes</span>
-            <span class="card-value">3</span>
-            <span class="card-sub">Requieren atención</span>
-          </div>
-          <div class="card-bar red"></div>
-        </div>
-
-        <div class="card summary-card" data-color="cyan">
-          <div class="card-icon cyan">
-            <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><path d="M10 4v12M6 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="12" width="12" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-          </div>
-          <div class="card-body">
-            <span class="card-label">Intensificación activa</span>
-            <span class="card-value">1</span>
-            <span class="card-sub">Matemática — dic 2025</span>
-          </div>
-          <div class="card-bar cyan"></div>
-        </div>
-      </section>
-
-      <!-- ─── TRAYECTORIA EDUCATIVA ─── -->
-      <section class="timeline-section" aria-label="Trayectoria educativa">
-        <div class="section-header">
-          <h2 class="section-title">Trayectoria educativa</h2>
-          <span class="section-subtitle">Secundaria completa · 7 años</span>
-        </div>
-        <div class="timeline-scroll-wrapper">
-          <div class="timeline-track">
-            <!-- Nodos generados por JS -->
-          </div>
-        </div>
-        <div class="timeline-legend">
-          <span class="legend-item"><span class="legend-dot green"></span>Aprobado</span>
-          <span class="legend-item"><span class="legend-dot yellow"></span>En proceso</span>
-          <span class="legend-item"><span class="legend-dot red"></span>Con deuda</span>
-          <span class="legend-item"><span class="legend-dot cyan"></span>Intensificación</span>
-          <span class="legend-item"><span class="legend-dot gray"></span>Pendiente</span>
-        </div>
-      </section>
-
-      <!-- ─── MAIN TABLE + RIGHT PANEL ─── -->
-      <div class="content-grid">
-
-        <!-- TABLE -->
-        <section class="table-section" aria-label="Estado por materia">
-          <div class="section-header">
-            <h2 class="section-title">Estado académico por materia</h2>
-            <div class="table-filters">
-              <button class="filter-btn active" data-filter="all">Todas</button>
-              <button class="filter-btn" data-filter="aprobada">Aprobadas</button>
-              <button class="filter-btn" data-filter="pendiente">Pendientes</button>
-              <button class="filter-btn" data-filter="intensificacion">Intensificación</button>
-            </div>
-          </div>
-          <div class="table-wrapper">
-            <table class="grades-table" id="gradesTable">
-              <thead>
-                <tr>
-                  <th>Materia</th>
-                  <th>Docente</th>
-                  <th>1° Bim.</th>
-                  <th>2° Bim.</th>
-                  <th>Prom.</th>
-                  <th>Estado</th>
-                </tr>
-              </thead>
-              <tbody id="gradesBody">
-                <!-- Generado por JS -->
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- RIGHT PANEL -->
-        <aside class="right-panel">
-
-          <!-- ALERTS -->
-          <section class="panel-section" aria-label="Alertas académicas">
-            <div class="panel-section-header">
-              <h3 class="panel-title">Alertas académicas</h3>
-              <span class="alert-count" id="alertCount">4</span>
-            </div>
-            <div class="alerts-list" id="alertsList">
-              <!-- Generado por JS -->
-            </div>
-          </section>
-
-          <!-- INFORMES -->
-          <section class="panel-section" aria-label="Informes RITE">
-            <div class="panel-section-header">
-              <h3 class="panel-title">Informes RITE</h3>
-              <button class="btn-link">Ver todos</button>
-            </div>
-            <div class="informes-list" id="informesList">
-              <!-- Generado por JS -->
-            </div>
-          </section>
-
-        </aside>
-      </div><!-- /content-grid -->
-
-    </div><!-- /content-body -->
-  </main>
-
-  <script src="js/script.js"></script>
+  <!-- Scripts -->
+  <script src="<?php echo $currentPage['js']; ?>"></script>
 </body>
 </html>

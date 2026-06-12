@@ -1,0 +1,136 @@
+Sistema de Gestión de Calificaciones
+7° Año – Programación
+Objetivo General
+Desarrollar una aplicación modular para la gestión de calificaciones académicas, alineada con el nuevo régimen académico, que contemple instancias de evaluación, períodos de intensificación y recursada de materias.El sistema deberá funcionar sobre el servidor institucional (GEdeCon) e incluir una PWA instalable en dispositivos móviles.
+ Usuarios del Sistema
+Docente
+Registra calificaciones.
+Gestiona evaluaciones por materia.
+Define instancias de intensificación o recursada.
+Administrador
+Gestiona usuarios.
+Configura materias, cursos y ciclos lectivos.
+Supervisa el sistema.
+Alumno
+Consulta sus calificaciones.
+Visualiza su situación académica.
+Accede a instancias de intensificación o recursada.
+Padres / Tutores
+Visualizan el rendimiento académico del alumno.
+Consultan calificaciones e instancias pendientes.
+Funcionalidades Principales
+Gestión de Calificaciones
+Registro de notas por:
+Materia
+Alumno
+Tipo de evaluación (trabajo práctico, examen, etc.)
+Posibilidad de definir:
+Notas numéricas y/o conceptuales
+Cálculo automático de promedios (según criterio definido).
+Régimen Académico (Obligatorio)
+El sistema debe contemplar el nuevo régimen académico, incluyendo:
+Investigación previa (REQUERIDO)
+Antes del desarrollo, cada grupo deberá:
+Investigar cómo funciona el nuevo régimen académico vigente.
+Analizar cómo se evalúan las trayectorias escolares.
+Tener en cuenta los RITE (Regímenes Institucionales de Trayectoria Educativa).
+Definir, en base a esa investigación, cómo se modelará el sistema de calificaciones.
+Trayectoria del Alumno
+Estado de la materia:
+Aprobada
+En proceso
+No aprobada
+Períodos de Intensificación
+Registro de instancias de intensificación.
+Asociación de nuevas calificaciones en estos períodos.
+Actualización del estado de la materia según resultados.
+Recursada
+Posibilidad de indicar que un alumno debe recursar una materia.
+Registro de nueva cursada con sus respectivas evaluaciones.
+Seguimiento Académico
+Visualización de:
+Promedios por materia
+Estado académico general
+Materias pendientes
+Historial completo del alumno.
+Reportes
+Listados de:
+Alumnos con materias pendientes
+Rendimiento por curso
+Evolución académica
+Exportación (opcional).
+Registro y Auditoría
+Registro de:
+Carga y modificación de notas
+Cambios de estado académico
+Identificación de usuario, fecha y acción.
+Requerimientos Técnicos
+Backend (Servidor GEdeCon)
+Arquitectura modular:
+Usuarios
+Calificaciones
+Materias
+Régimen académico
+Reportes
+Base de datos relacional.
+API REST.
+Frontend Web
+Acceso por navegador.
+Paneles diferenciados por usuario.
+Aplicación PWA
+Instalación en celulares.
+Acceso rápido.
+Visualización optimizada para alumnos y familias.
+Arquitectura
+Separación mínima en módulos:
+Usuarios
+Materias
+Calificaciones
+Régimen Académico
+Reportes
+Interfaz
+Panel según rol.
+Carga de notas simple e intuitiva.
+Visualización clara del estado académico.
+ENTREGABLES
+El desarrollo se divide en dos etapas obligatorias:
+Etapa 1 – Entrega Parcial
+Demo funcional del sistema.
+Implementación inicial de:
+Carga de calificaciones
+Visualización básica
+Presentación oral:
+Funcionamiento
+Modelo de datos
+Resultados de la investigación del régimen académico
+Etapa 2 – Entrega Final
+Sistema completo funcionando correctamente.
+Implementación total del régimen académico:
+Intensificación
+Recursada
+Aplicación del modelo basado en RITE
+Sistema probado en producción (GEdeCon).
+Presentación final:
+Demostración completa
+Explicación técnica
+Justificación del modelo de evaluación implementado
+CRITERIOS DE EVALUACIÓN
+Funcionalidad general
+Modularidad
+Usabilidad
+Persistencia de datos
+Auditoría
+Implementación PWA
+Calidad del código
+Documentación y presentación
+CONSIDERACIONES
+El sistema debe representar un modelo realista del sistema educativo actual.
+La investigación es parte fundamental del proyecto.
+No se evaluará solo el código, sino también la correcta interpretación del régimen académico.
+Trabajo grupal.
+DESAFÍO
+El objetivo es que los estudiantes logren:
+Interpretar normativa educativa real
+Modelar reglas académicas complejas
+Integrar lógica institucional en un sistema informático
+Resultado esperado: Un sistema modular, funcional y fundamentado en el régimen académico vigente, capaz de gestionar calificaciones y trayectorias escolares de manera completa y coherente.

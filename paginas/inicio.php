@@ -1,0 +1,165 @@
+<main class="main-content">
+
+  <!-- HEADER -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <svg viewBox="0 0 20 20" width="20" height="20"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <div class="header-title-block">
+        <h1 class="header-title">Inicio</h1>
+        <div class="header-breadcrumb">
+          <span class="breadcrumb-year">7° 2° Grupo B</span>
+          <span class="breadcrumb-sep">•</span>
+          <span class="breadcrumb-division">Orientación Programacion</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-meta">
+        <span class="ciclo-badge">Ciclo 2026</span>
+        <span class="update-text">Actualizado: 28 may 2025, 19:42</span>
+      </div>
+      <button class="btn-export">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 11v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Exportar PDF
+      </button>
+    </div>
+  </header>
+
+  <div class="content-body">
+
+    <!-- ─── SUMMARY CARDS ─── -->
+    <section class="summary-cards" aria-label="Resumen académico">
+      <div class="card summary-card" data-color="blue">
+        <div class="card-icon blue">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.94 5.5L10 14.5 5.06 17.2 6 11.7 2 7.8l5.5-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <span class="card-label">Promedio general</span>
+          <span class="card-value">7.4</span>
+          <span class="card-sub">Sobre 10 puntos</span>
+        </div>
+        <div class="card-bar blue"></div>
+      </div>
+
+      <div class="card summary-card" data-color="green">
+        <div class="card-icon green">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><path d="M4 10l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <span class="card-label">Materias aprobadas</span>
+          <span class="card-value">8</span>
+          <span class="card-sub">de 12 materias totales</span>
+        </div>
+        <div class="card-bar green"></div>
+      </div>
+
+      <div class="card summary-card" data-color="red">
+        <div class="card-icon red">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="7" x2="10" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="13.5" r="1" fill="currentColor"/></svg>
+        </div>
+        <div class="card-body">
+          <span class="card-label">Materias pendientes</span>
+          <span class="card-value">3</span>
+          <span class="card-sub">Requieren atención</span>
+        </div>
+        <div class="card-bar red"></div>
+      </div>
+
+      <div class="card summary-card" data-color="cyan">
+        <div class="card-icon cyan">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><path d="M10 4v12M6 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="12" width="12" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <div class="card-body">
+          <span class="card-label">Intensificación activa</span>
+          <span class="card-value">1</span>
+          <span class="card-sub">Matemática — dic 2025</span>
+        </div>
+        <div class="card-bar cyan"></div>
+      </div>
+    </section>
+
+    <!-- ─── TRAYECTORIA EDUCATIVA ─── -->
+    <section class="timeline-section" aria-label="Trayectoria educativa">
+      <div class="section-header">
+        <h2 class="section-title">Trayectoria educativa</h2>
+        <span class="section-subtitle">Secundaria completa · 7 años</span>
+      </div>
+      <div class="timeline-scroll-wrapper">
+        <div class="timeline-track">
+          <!-- Nodos generados por JS -->
+        </div>
+      </div>
+      <div class="timeline-legend">
+        <span class="legend-item"><span class="legend-dot green"></span>Aprobado</span>
+        <span class="legend-item"><span class="legend-dot yellow"></span>En proceso</span>
+        <span class="legend-item"><span class="legend-dot red"></span>Con deuda</span>
+        <span class="legend-item"><span class="legend-dot cyan"></span>Intensificación</span>
+        <span class="legend-item"><span class="legend-dot gray"></span>Pendiente</span>
+      </div>
+    </section>
+
+    <!-- ─── MAIN TABLE + RIGHT PANEL ─── -->
+    <div class="content-grid">
+
+      <!-- TABLE -->
+      <section class="table-section" aria-label="Estado por materia">
+        <div class="section-header">
+          <h2 class="section-title">Estado académico por materia</h2>
+          <div class="table-filters">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="aprobada">Aprobadas</button>
+            <button class="filter-btn" data-filter="pendiente">Pendientes</button>
+            <button class="filter-btn" data-filter="intensificacion">Intensificación</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="grades-table" id="gradesTable">
+            <thead>
+              <tr>
+                <th>Materia</th>
+                <th>Docente</th>
+                <th>1° Bim.</th>
+                <th>2° Bim.</th>
+                <th>Prom.</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="gradesBody">
+              <!-- Generado por JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL -->
+      <aside class="right-panel">
+
+        <!-- ALERTS -->
+        <section class="panel-section" aria-label="Alertas académicas">
+          <div class="panel-section-header">
+            <h3 class="panel-title">Alertas académicas</h3>
+            <span class="alert-count" id="alertCount">4</span>
+          </div>
+          <div class="alerts-list" id="alertsList">
+            <!-- Generado por JS -->
+          </div>
+        </section>
+
+        <!-- INFORMES -->
+        <section class="panel-section" aria-label="Informes RITE">
+          <div class="panel-section-header">
+            <h3 class="panel-title">Informes RITE</h3>
+            <button class="btn-link">Ver todos</button>
+          </div>
+          <div class="informes-list" id="informesList">
+            <!-- Generado por JS -->
+          </div>
+        </section>
+
+      </aside>
+    </div><!-- /content-grid -->
+
+  </div><!-- /content-body -->
+</main>

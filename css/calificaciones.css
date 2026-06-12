@@ -4,8 +4,8 @@
 ══════════════════════════════════════════════════════════ */
 
 /* ── TOKENS ─────────────────────────────────────────────── */
-:root {
-  /* Sidebar */
+.main {
+  /* Variables locales de calificaciones */
   --sidebar-w: 242px;
   --sidebar-bg: #0f1f4b;
   --sidebar-hover: rgba(255,255,255,.07);
@@ -59,18 +59,11 @@
 
   --ease: cubic-bezier(.4,0,.2,1);
   --dur: 180ms;
-}
 
-/* ── RESET ───────────────────────────────────────────────── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:14px;-webkit-font-smoothing:antialiased}
-body{
-  font-family:'DM Sans',system-ui,sans-serif;
-  background:var(--page);
-  color:var(--t1);
-  min-height:100vh;
-  display:flex;
-  overflow-x:hidden;
+  /* Estilos base para la sección calificaciones */
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--page);
+  color: var(--t1);
 }
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer}
@@ -86,94 +79,7 @@ input{font-family:inherit}
 .page-layout{display:flex;min-height:100vh;width:100%}
 
 /* ── SIDEBAR ─────────────────────────────────────────────── */
-.sidebar{
-  width:var(--sidebar-w);
-  min-width:var(--sidebar-w);
-  background:var(--sidebar-bg);
-  display:flex;
-  flex-direction:column;
-  height:100vh;
-  position:sticky;
-  top:0;
-  overflow:hidden;
-  transition:transform var(--dur) var(--ease);
-  z-index:300;
-}
 
-/* Brand */
-.sidebar-top{padding:20px 16px 14px;border-bottom:1px solid var(--sidebar-border)}
-.brand{display:flex;align-items:center;gap:10px}
-.brand-mark{
-  width:38px;height:38px;
-  background:rgba(255,255,255,.1);
-  border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.brand-name{font-size:13px;font-weight:700;color:#fff;letter-spacing:.2px}
-.brand-sub{font-size:10px;color:rgba(255,255,255,.4);margin-top:1px}
-
-/* Nav */
-.sidebar-nav{flex:1;overflow-y:auto;padding:10px 8px;display:flex;flex-direction:column;gap:1px}
-.nav-group-label{
-  font-size:9.5px;font-weight:700;
-  text-transform:uppercase;letter-spacing:1.2px;
-  color:rgba(255,255,255,.3);
-  padding:10px 8px 4px;
-}
-.nav-link{
-  display:flex;align-items:center;gap:9px;
-  padding:9px 10px;
-  border-radius:var(--r-sm);
-  color:rgba(255,255,255,.58);
-  font-size:13px;font-weight:500;
-  transition:background var(--dur),color var(--dur);
-  position:relative;
-}
-.nav-link:hover{background:var(--sidebar-hover);color:#fff}
-.nav-link.active{
-  background:var(--sidebar-active);
-  color:#fff;
-}
-.nav-link.active::before{
-  content:'';
-  position:absolute;left:-8px;top:50%;
-  transform:translateY(-50%);
-  width:3px;height:18px;
-  background:var(--accent-mid);
-  border-radius:0 3px 3px 0;
-}
-.nav-ico{width:16px;height:16px;flex-shrink:0}
-.nav-pill{
-  margin-left:auto;
-  background:var(--red);color:#fff;
-  font-size:9.5px;font-weight:800;
-  padding:1px 6px;border-radius:99px;
-}
-
-/* User */
-.sidebar-user{
-  padding:12px 10px;
-  border-top:1px solid var(--sidebar-border);
-  display:flex;align-items:center;gap:9px;
-}
-.user-avatar{
-  width:34px;height:34px;border-radius:50%;
-  background:linear-gradient(135deg,#3062d4,#6390f5);
-  color:#fff;font-size:11px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;letter-spacing:.5px;
-}
-.user-name{font-size:12px;font-weight:600;color:#fff}
-.user-dni{font-size:10px;color:rgba(255,255,255,.38);margin-top:1px}
-
-/* ── OVERLAY ─────────────────────────────────────────────── */
-.overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.44);z-index:200;
-  backdrop-filter:blur(2px);
-}
-.overlay.show{display:block}
 
 /* ── MAIN ────────────────────────────────────────────────── */
 .main{flex:1;min-width:0;display:flex;flex-direction:column;overflow-y:auto;max-height:100vh}
@@ -578,8 +484,6 @@ input{font-family:inherit}
   .promedios-card{grid-column:1/-1}
 }
 @media(max-width:860px){
-  .sidebar{position:fixed;left:0;top:0;height:100vh;transform:translateX(-100%)}
-  .sidebar.open{transform:translateX(0)}
   .hamburger{display:flex}
   .topbar{padding:0 16px}
   .content{padding:16px}

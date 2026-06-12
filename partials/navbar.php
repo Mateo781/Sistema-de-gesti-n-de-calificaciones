@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#1a2d5a" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <title>RITE — Panel del Alumno</title>
-  <link rel="stylesheet" href="/dashboard/sgc/css/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-</head>
-<body>
-
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="school-logo">
@@ -34,19 +20,19 @@
 
     <nav class="sidebar-nav">
       <span class="nav-section-label">Principal</span>
-      <a href="#" class="nav-item active" data-section="inicio">
+      <a href="index.php?p=inicio" class="nav-item <?= (!isset($p) || $p === 'inicio') ? 'active' : '' ?>" data-section="inicio">
         <svg class="nav-icon" viewBox="0 0 20 20"><path d="M10 2L2 8v10h5v-5h6v5h5V8L10 2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></svg>
         Inicio
       </a>
-      <a href="paginas/calificaciones.php" class="nav-item" data-section="calificaciones">
+      <a href="index.php?p=calificaciones" class="nav-item <?= (isset($p) && $p === 'calificaciones') ? 'active' : '' ?>" data-section="calificaciones">
         <svg class="nav-icon" viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5"/><line x1="7" y1="10" x2="13" y2="10" stroke="currentColor" stroke-width="1.5"/><line x1="7" y1="13" x2="11" y2="13" stroke="currentColor" stroke-width="1.5"/></svg>
         Ver calificaciones
       </a>
-      <a href="#" class="nav-item" data-section="situacion">
+      <a href="index.php?p=situacion" class="nav-item <?= (isset($p) && $p === 'situacion') ? 'active' : '' ?>" data-section="situacion">
         <svg class="nav-icon" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="10" y1="6" x2="10" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg>
         Situación académica
       </a>
-      <a href="paginas/materias-pendientes.php" class="nav-item" data-section="pendientes">
+      <a href="index.php?p=pendientes" class="nav-item <?= (isset($p) && $p === 'pendientes') ? 'active' : '' ?>" data-section="pendientes">
         <svg class="nav-icon" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         Materias pendientes
         <span class="nav-badge">3</span>
@@ -78,4 +64,3 @@
       </button>
     </div>
   </aside>
-</body>
