@@ -23,7 +23,7 @@
     </div>
   </header>
 
-  <!-- ═══ CONTENT ═══ -->
+  <!--  CONTENT  -->
   <div class="content">
 
     <!-- OVERVIEW STATS -->
