@@ -1,0 +1,296 @@
+/* ==========================================================================
+   ESTILOS BASE Y CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.main {
+  /* Variables de Color (Paleta UI) */
+  --accent: #2557d6;
+  --accent-light: #eef2fd;
+  --page: #f4f6fb;
+  --card: #ffffff;
+  --row-hover: #f8faff;
+  --border: #e8eaf0;
+  --border-soft: #f0f2f7;
+  --t1: #0d1830;
+  --t2: #4a5468;
+  --t3: #9aa0b0;
+  
+  /* Utilidades */
+  --shadow-xs: 0 1px 3px rgba(15,31,75,.06);
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --ease: cubic-bezier(.4,0,.2,1);
+  --dur: 180ms;
+
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--page);
+  color: var(--t1);
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+/* ==========================================================================
+   CABECERA PRINCIPAL (TOPBAR)
+   ========================================================================== */
+.topbar {
+  height: 62px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-title-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -.3px;
+  line-height: 1;
+  margin: 0;
+}
+
+.header-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.breadcrumb-year {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.breadcrumb-sep {
+  color: var(--t3);
+  font-size: 11px;
+}
+
+.breadcrumb-division {
+  font-size: 11px;
+  color: var(--t2);
+}
+
+/* ==========================================================================
+   CONTENEDOR DE CONTENIDO Y ESTRUCTURAS DE TARJETAS
+   ========================================================================== */
+.content {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  animation: fadeUp 350ms var(--ease) both;
+}
+
+.table-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.table-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -.2px;
+  margin: 0;
+}
+
+.table-card-count {
+  font-size: 11px;
+  color: var(--t3);
+  margin-top: 2px;
+  display: block;
+}
+
+/* ==========================================================================
+   COMPONENTES DE FORMULARIOS (INPUTS Y SELECTS)
+   ========================================================================== */
+.filter-select {
+  height: 38px;
+  background: var(--page);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 0 28px 0 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--t2);
+  outline: none;
+  transition: all var(--dur);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239aa0b0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+.filter-select:focus:not(:disabled) {
+  border-color: var(--accent);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(37, 87, 214, 0.1);
+}
+
+.filter-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--border-soft);
+}
+
+.filter-input {
+  height: 38px;
+  background: var(--page);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--t1);
+  outline: none;
+  transition: all var(--dur);
+  box-sizing: border-box;
+}
+
+.filter-input:focus {
+  border-color: var(--accent);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(37, 87, 214, 0.1);
+}
+
+.filter-input::placeholder {
+  color: var(--t3);
+}
+
+/* Botón Guardar / Confirmar */
+.btn-export {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--dur), transform var(--dur);
+}
+
+.btn-export:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.btn-export:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   TABLA DE ALUMNOS Y CALIFICACIONES
+   ========================================================================== */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.eval-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.eval-table thead tr {
+  background: var(--page);
+  border-bottom: 1px solid var(--border);
+}
+
+.eval-table th {
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--t3);
+  white-space: nowrap;
+}
+
+.eval-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--t1);
+  vertical-align: middle;
+}
+
+.eval-table tbody tr {
+  transition: background var(--dur);
+}
+
+.eval-table tbody tr:hover {
+  background: var(--row-hover);
+}
+
+.eval-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.td-materia {
+  font-size: 13.5px;
+}
+
+.td-materia strong {
+  color: var(--t1);
+  font-weight: 600;
+}
+
+/* Footer de la Tabla */
+.table-footer {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-soft);
+  background: var(--page);
+}
+
+/* ==========================================================================
+   ANIMACIONES Y RESPONSIVE
+   ========================================================================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .topbar { padding: 0 16px; }
+  .content { padding: 16px; }
+  .header-breadcrumb { display: none; }
+  
+  /* Desapila las celdas críticas en pantallas diminutas si es necesario */
+  .eval-table th:nth-child(4), 
+  .eval-table td:nth-child(4) { 
+    display: none; /* Oculta observaciones en celulares para preservar espacio */
+  }
+}

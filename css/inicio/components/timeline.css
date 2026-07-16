@@ -1,0 +1,180 @@
+/* TIMELINE — TRAYECTORIA EDUCATIVA */
+.timeline-section {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 20px 24px 16px;
+  box-shadow: var(--shadow-sm);
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.section-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Scroll wrapper — this is the key horizontal scroll container */
+.timeline-scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+.timeline-scroll-wrapper::-webkit-scrollbar { height: 4px; }
+.timeline-scroll-wrapper::-webkit-scrollbar-track { background: var(--border-light); border-radius: 99px; }
+.timeline-scroll-wrapper::-webkit-scrollbar-thumb { background: #c3cfe2; border-radius: 99px; }
+
+.timeline-track {
+  display: flex;
+  align-items: center;
+  padding: 8px 4px 12px;
+  gap: 0;
+  min-width: max-content;
+  position: relative;
+}
+
+/* Connector line between nodes */
+.timeline-connector {
+  height: 2px;
+  width: 64px;
+  flex-shrink: 0;
+  background: var(--border);
+  position: relative;
+}
+.timeline-connector.filled { background: linear-gradient(90deg, #2d7d46, #3b7d4b); }
+.timeline-connector.partial { background: linear-gradient(90deg, #b07d0a, #c8940e); }
+.timeline-connector.dashed {
+  background: none;
+  border-top: 2px dashed var(--border);
+}
+
+/* Node */
+.timeline-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 110px;
+  scroll-snap-align: center;
+  cursor: pointer;
+}
+.node-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid transparent;
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+}
+.timeline-node:hover .node-circle { transform: scale(1.08); box-shadow: var(--shadow-md); }
+
+.node-circle.green  { background: var(--green-bg);  border-color: var(--green);  }
+.node-circle.yellow { background: var(--yellow-bg); border-color: var(--yellow); }
+.node-circle.red    { background: var(--red-bg);    border-color: var(--red);    }
+.node-circle.cyan   { background: var(--cyan-bg);  border-color: var(--cyan);   }
+.node-circle.gray   { background: var(--gray-bg);  border-color: #d1d5db;       }
+
+.node-year {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+.node-circle.green  .node-year { color: var(--green-text); }
+.node-circle.yellow .node-year { color: var(--yellow-text); }
+.node-circle.red    .node-year { color: var(--red-text); }
+.node-circle.cyan   .node-year { color: var(--cyan-text); }
+.node-circle.gray   .node-year { color: var(--gray-text); }
+
+.node-avg {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 2px;
+}
+.node-circle.green  .node-avg { color: var(--green); }
+.node-circle.yellow .node-avg { color: var(--yellow); }
+.node-circle.red    .node-avg { color: var(--red); }
+.node-circle.cyan   .node-avg { color: var(--cyan); }
+.node-circle.gray   .node-avg { color: var(--gray); }
+
+.node-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.node-status {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.node-status.green  { background: var(--green-bg);  color: var(--green-text); }
+.node-status.yellow { background: var(--yellow-bg); color: var(--yellow-text); }
+.node-status.red    { background: var(--red-bg);    color: var(--red-text); }
+.node-status.cyan   { background: var(--cyan-bg);  color: var(--cyan-text); }
+.node-status.gray   { background: var(--gray-bg);  color: var(--gray-text); }
+
+/* Current year indicator */
+.node-current .node-circle {
+  box-shadow: 0 0 0 4px rgba(59,111,212,.2);
+}
+.node-current-badge {
+  position: absolute;
+  top: -10px;
+  background: var(--brand-accent);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 99px;
+  white-space: nowrap;
+  letter-spacing: .3px;
+}
+
+/* Legend */
+.timeline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.legend-dot.green  { background: var(--green); }
+.legend-dot.yellow { background: var(--yellow); }
+.legend-dot.red    { background: var(--red); }
+.legend-dot.cyan   { background: var(--cyan); }
+.legend-dot.gray   { background: #9ca3af; }

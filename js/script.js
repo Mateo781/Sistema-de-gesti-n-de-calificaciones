@@ -1,11 +1,4 @@
-/* ═══════════════════════════════════════════════════════════
-   RITE — Sistema de Gestión de Calificaciones
-   app.js v1.0
-═══════════════════════════════════════════════════════════ */
-
 'use strict';
-
-/* ─── DATA ─────────────────────────────────────────────────── */
 
 const TRAYECTORIA = [
   { year: '1°',  label: '1° Año',  status: 'green',  statusLabel: 'Aprobado',    avg: '8.2', connector: null },
@@ -18,17 +11,17 @@ const TRAYECTORIA = [
 ];
 
 const MATERIAS = [
-  { materia: 'Matemática',                   docente: 'Prof. Rodríguez, M.',  b1: 6,   b2: 5,   estado: 'intensificacion' },
-  { materia: 'Lengua y Literatura',          docente: 'Prof. Gómez, P.',      b1: 8,   b2: 8,   estado: 'aprobada' },
-  { materia: 'Historia',                     docente: 'Prof. Martínez, L.',   b1: 9,   b2: 8,   estado: 'aprobada' },
-  { materia: 'Geografía',                    docente: 'Prof. Fernández, R.',  b1: 7,   b2: 7,   estado: 'aprobada' },
-  { materia: 'Biología',                     docente: 'Prof. López, S.',      b1: 4,   b2: null, estado: 'desaprobada' },
-  { materia: 'Física',                       docente: 'Prof. Sánchez, J.',    b1: 7,   b2: null, estado: 'proceso' },
-  { materia: 'Química',                      docente: 'Prof. Torres, A.',     b1: 8,   b2: 9,   estado: 'aprobada' },
-  { materia: 'Inglés',                       docente: 'Prof. Wilson, C.',     b1: 10,  b2: 9,   estado: 'aprobada' },
-  { materia: 'Educación Física',             docente: 'Prof. Ramos, G.',      b1: 9,   b2: 9,   estado: 'aprobada' },
-  { materia: 'Informática Aplicada',         docente: 'Prof. Pérez, D.',      b1: 9,   b2: 10,  estado: 'aprobada' },
-  { materia: 'Programación y Redes',         docente: 'Prof. Herrera, V.',    b1: 8,   b2: null, estado: 'proceso' },
+  { materia: 'Matemática',            docente: 'Prof. Rodríguez, M.',  b1: 6,    b2: 5,    estado: 'intensificacion' },
+  { materia: 'Lengua y Literatura',          docente: 'Prof. Gómez, P.',      b1: 8,    b2: 8,    estado: 'aprobada' },
+  { materia: 'Historia',                     docente: 'Prof. Martínez, L.',   b1: 9,    b2: 8,    estado: 'aprobada' },
+  { materia: 'Geografía',                    docente: 'Prof. Fernández, R.',  b1: 7,    b2: 7,    estado: 'aprobada' },
+  { materia: 'Biología',                     docente: 'Prof. López, S.',      b1: 4,    b2: null, estado: 'desaprobada' },
+  { materia: 'Física',                       docente: 'Prof. Sánchez, J.',    b1: 7,    b2: null, estado: 'proceso' },
+  { materia: 'Química',                      docente: 'Prof. Torres, A.',     b1: 8,    b2: 9,    estado: 'aprobada' },
+  { materia: 'Inglés',                       docente: 'Prof. Wilson, C.',     b1: 10,   b2: 9,    estado: 'aprobada' },
+  { materia: 'Educación Física',             docente: 'Prof. Ramos, G.',      b1: 9,    b2: 9,    estado: 'aprobada' },
+  { materia: 'Informática Aplicada',         docente: 'Prof. Pérez, D.',      b1: 9,    b2: 10,   estado: 'aprobada' },
+  { materia: 'Programación y Redes',         docente: 'Prof. Herrera, V.',    b1: 8,    b2: null, estado: 'proceso' },
   { materia: 'Construcción de Ciudadanía',   docente: 'Prof. Díaz, N.',       b1: null, b2: null, estado: 'pendiente' },
 ];
 
@@ -91,25 +84,11 @@ const INFORMES = [
   },
 ];
 
-/* ─── HELPERS ────────────────────────────────────────────── */
-
 function getNotaClass(nota) {
   if (nota === null) return 'nota-nd';
   if (nota >= 7) return 'nota-alta';
   if (nota >= 6) return 'nota-media';
   return 'nota-baja';
-}
-
-function getPromClass(prom) {
-  if (prom >= 7) return 'prom-alta';
-  if (prom >= 6) return 'prom-media';
-  return 'prom-baja';
-}
-
-function calcProm(b1, b2) {
-  const notas = [b1, b2].filter(n => n !== null);
-  if (notas.length === 0) return null;
-  return notas.reduce((a, b) => a + b, 0) / notas.length;
 }
 
 function formatNota(n) {
@@ -128,8 +107,6 @@ function getBadge(estado) {
   return `<span class="badge ${cls}">${label}</span>`;
 }
 
-/* ─── RENDER TIMELINE ────────────────────────────────────── */
-
 function renderTimeline() {
   const track = document.querySelector('.timeline-track');
   if (!track) return;
@@ -137,7 +114,6 @@ function renderTimeline() {
   let html = '';
 
   TRAYECTORIA.forEach((node, i) => {
-    // Connector before each node except the first
     if (i > 0) {
       html += `<div class="timeline-connector ${node.connector || 'dashed'}"></div>`;
     }
@@ -167,7 +143,6 @@ function renderTimeline() {
 
   track.innerHTML = html;
 
-  // Scroll to current year smoothly
   const currentNode = track.querySelector('.node-current');
   if (currentNode) {
     setTimeout(() => {
@@ -176,10 +151,8 @@ function renderTimeline() {
   }
 }
 
-/* ─── RENDER GRADES TABLE ────────────────────────────────── */
-
 function renderTable(filter = 'all') {
-  const tbody = document.getElementById('gradesBody');
+  const tbody = document.getElementById('evalBody') || document.getElementById('gradesBody');
   if (!tbody) return;
 
   const filtered = filter === 'all'
@@ -197,9 +170,14 @@ function renderTable(filter = 'all') {
   }
 
   tbody.innerHTML = filtered.map(m => {
-    const prom = calcProm(m.b1, m.b2);
+    const notas = [m.b1, m.b2].filter(n => n !== null);
+    const prom =  notas.length === 0 ? null : notas.reduce((a, b) => a + b, 0) / notas.length;
     const promStr = prom !== null ? prom.toFixed(1) : '—';
-    const promCls = prom !== null ? getPromClass(prom) : '';
+    
+    let promCls = 'prom-baja';
+    if (prom >= 7) promCls = 'prom-alta';
+    else if (prom >= 6) promCls = 'prom-media';
+
     return `
       <tr>
         <td class="td-materia">${m.materia}</td>
@@ -212,10 +190,9 @@ function renderTable(filter = 'all') {
   }).join('');
 }
 
-/* ─── RENDER ALERTS ─────────────────────────────────────── */
-
 function renderAlerts() {
-  const list = document.getElementById('alertsList');
+  // Soporta tanto 'alertList' como 'alertsList' según el HTML provisto
+  const list = document.getElementById('alertList') || document.getElementById('alertsList');
   if (!list) return;
 
   list.innerHTML = ALERTAS.map(a => `
@@ -231,8 +208,6 @@ function renderAlerts() {
     </div>
   `).join('');
 }
-
-/* ─── RENDER INFORMES ────────────────────────────────────── */
 
 function renderInformes() {
   const list = document.getElementById('informesList');
@@ -250,8 +225,6 @@ function renderInformes() {
   `).join('');
 }
 
-/* ─── NAV ACTIVE STATE ───────────────────────────────────── */
-
 function initNav() {
   const navItems = document.querySelectorAll('.nav-item');
   navItems.forEach(item => {
@@ -261,8 +234,6 @@ function initNav() {
     });
   });
 }
-
-/* ─── TABLE FILTERS ─────────────────────────────────────── */
 
 function initFilters() {
   const btns = document.querySelectorAll('.filter-btn');
@@ -275,10 +246,8 @@ function initFilters() {
   });
 }
 
-/* ─── MOBILE SIDEBAR ────────────────────────────────────── */
-
 function initMobileSidebar() {
-  const toggle  = document.getElementById('menuToggle');
+  const toggle  = document.getElementById('menuToggle') || document.getElementById('hamburger');
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebarOverlay');
 
@@ -296,15 +265,12 @@ function initMobileSidebar() {
   toggle?.addEventListener('click', openSidebar);
   overlay?.addEventListener('click', closeSidebar);
 
-  // Close on nav item click (mobile)
   document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('click', () => {
       if (window.innerWidth < 900) closeSidebar();
     });
   });
 }
-
-/* ─── EXPORT BUTTON ─────────────────────────────────────── */
 
 function initExport() {
   const btn = document.querySelector('.btn-export');
@@ -324,8 +290,6 @@ function initExport() {
   });
 }
 
-/* ─── TIMELINE KEYBOARD NAV ─────────────────────────────── */
-
 function initTimelineKeyboard() {
   document.querySelector('.timeline-track')?.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -338,21 +302,12 @@ function initTimelineKeyboard() {
   });
 }
 
-/* ─── SIMPLE TOOLTIP FOR TIMELINE NODES ─────────────────── */
-
 function showNodeTooltip(nodeEl) {
-  const year   = nodeEl.dataset.year;
-  const status = nodeEl.dataset.status;
-  const avg    = nodeEl.dataset.avg;
-  // Simple visual feedback — pulse effect
   nodeEl.querySelector('.node-circle').style.transform = 'scale(1.15)';
   setTimeout(() => {
     nodeEl.querySelector('.node-circle').style.transform = '';
   }, 300);
-  // Could be extended with a real tooltip popup
 }
-
-/* ─── TOUCH HORIZONTAL SWIPE for timeline ───────────────── */
 
 function initTimelineTouch() {
   const wrapper = document.querySelector('.timeline-scroll-wrapper');
@@ -385,8 +340,6 @@ function initTimelineTouch() {
   });
 }
 
-/* ─── INIT ───────────────────────────────────────────────── */
-
 document.addEventListener('DOMContentLoaded', () => {
   renderTimeline();
   renderTable();
@@ -399,9 +352,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initTimelineKeyboard();
   initTimelineTouch();
 
-  // Staggered entrance animation for table rows
+  // Animación suave de filas de la tabla cargada
   setTimeout(() => {
-    const rows = document.querySelectorAll('#gradesBody tr');
+    const rows = document.querySelectorAll('#evalBody tr') || document.querySelectorAll('#gradesBody tr');
     rows.forEach((row, i) => {
       row.style.opacity = '0';
       row.style.transform = 'translateY(6px)';

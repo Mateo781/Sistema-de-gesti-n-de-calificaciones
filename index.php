@@ -1,38 +1,175 @@
 <?php
-// Determinar la página actual
-$p = isset($_GET['p']) ? $_GET['p'] : 'inicio';
+session_start();
 
-// Configuración de páginas
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: paginas/login.php");
+    exit;
+}
+
+$id_rol = $_SESSION['usuario_rol'] ?? null;
+$p = $_GET['p'] ?? 'inicio';
+
+// Redirección inicial según el rol
+if ($p == 'inicio') {
+    if ($id_rol == 2) {
+        $destino = 'prof_inicio';
+    } elseif ($id_rol == 5) {
+        $destino = 'dir_inicio';
+    } elseif ($id_rol == 6) {
+        $destino = 'jefe_inicio';
+    } else {
+        $destino = 'alum_inicio'; // Fallback para alumnos (3) u otros
+    }
+    
+    header("Location: index.php?p=$destino");
+    exit;
+}
+
+// Configuración de rutas del sistema
 $pages = [
-    'inicio' => [
-        'title' => 'RITE — Panel del Alumno',
+    // ==========================================
+    // ALUMNO (Rol 3)
+    // ==========================================
+    'alum_inicio' => [
+        'title' => ($id_rol == 3) ? 'RITE — Panel del Docente' : 'RITE — Panel del Alumno', // Mantenido de tu código original
         'css' => 'css/styles.css',
-        'content' => 'paginas/inicio.php',
-        'js' => 'js/script.js'
+        'content' => 'paginas/alumno/alum_inicio.php',
+        'js' => 'js/script.js',
+        'roles_permitidos' => [3]
     ],
-    'calificaciones' => [
+    'alum_actividades' => [
+        'title' => 'RITE — Ver Calificaciones',
+        'css' => 'css/alumnos/alum_actividades.css',
+        'content' => 'paginas/alumno/alum_actividades.php',
+        'js' => 'js/calificaciones.js',
+        'roles_permitidos' => [3]
+    ],
+    'alum_calificaciones' => [
         'title' => 'RITE — Ver Calificaciones',
         'css' => 'css/calificaciones.css',
-        'content' => 'paginas/calificaciones.php',
-        'js' => 'js/calificaciones.js'
+        'content' => 'paginas/alumno/alum_calificaciones.php',
+        'js' => 'js/calificaciones.js',
+        'roles_permitidos' => [3]
     ],
-    'situacion' => [
+    'alum_situacion' => [
         'title' => 'RITE — Situación Académica',
         'css' => 'css/situacion.css',
-        'content' => 'paginas/situacion.php',
-        'js' => 'js/situacion.js'
+        'content' => 'paginas/alumno/alum_situacion.php',
+        'js' => 'js/situacion.js',
+        'roles_permitidos' => [3]
     ],
-    'pendientes' => [
+    'alum_pendientes' => [
         'title' => 'RITE — Materias Pendientes',
-        'css' => 'css/materias-pendientes.css',
-        'content' => 'paginas/materias-pendientes.php',
-        'js' => 'js/materias-pendientes.js'
+        'css' => 'css/pendientes.css',
+        'content' => 'paginas/alumno/alum_pendientes.php',
+        'js' => 'js/pendientes.js',
+        'roles_permitidos' => [3]
+    ],
+    'trayectoria' => [
+        'title' => 'RITE — Trayectoria Educativa',
+        'css' => 'css/trayectoria.css',
+        'content' => 'paginas/alumno/alum_trayectoria.php',
+        'js' => 'js/trayectoria.js',
+        'roles_permitidos' => [3]
+    ],
+    'alertas' => [
+        'title' => 'RITE — Alertas Académicas',
+        'css' => 'css/styles.css',
+        'content' => 'paginas/alumno/alum_alertas.php',
+        'js' => 'js/script.js',
+        'roles_permitidos' => [3]
+    ],
+    'proximas_evaluaciones' => [
+        'title' => 'RITE — Próximas Evaluaciones',
+        'css' => 'css/calificaciones.css',
+        'content' => 'paginas/alumno/alum_proximas_evaluaciones.php',
+        'js' => 'js/calificaciones.js',
+        'roles_permitidos' => [3]
+    ],
+    'rite' => [
+        'title' => 'RITE — Informes RITE',
+        'css' => 'css/styles.css',
+        'content' => 'paginas/alumno/alum_rite.php',
+        'js' => 'js/script.js',
+        'roles_permitidos' => [3]
+    ],
+
+    // ==========================================
+    // PROFESOR (Rol 2)
+    // ==========================================
+    'prof_inicio' => [
+        'title' => ($id_rol == 2) ? 'RITE — Panel del Docente' : 'RITE — Panel del Alumno', // Mantenido de tu código original
+        'css' => 'css/profesor/dashboard.css',
+        'content' => 'paginas/profesor/prof_dashboard.php',
+        'js' => 'js/profesor/dashboard.js',
+        'roles_permitidos' => [2]
+    ],
+    'prof_calificaciones' => [
+        'title' => 'RITE — Carga de Calificaciones',
+        'css' => 'css/profesor/prof_calificaciones.css',
+        'content' => 'paginas/profesor/prof_calificaciones.php',
+        'js' => 'js/calificaciones.js',
+        'roles_permitidos' => [2]
+    ],
+    'prof_evaluaciones' => [
+        'title' => 'RITE — Planificar Actividades',
+        'css' => 'css/profesor/prof_evaluaciones.css',
+        'content' => 'paginas/profesor/prof_evaluaciones.php',
+        'js' => 'js/calificaciones.js',
+        'roles_permitidos' => [2]
+    ],
+    'prof_intensificaciones' => [
+        'title' => 'RITE — Gestión de RITE e Intensificación',
+        'css' => 'css/situacion.css',
+        'content' => 'paginas/profesor/intensificaciones.php',
+        'js' => 'js/situacion.js',
+        'roles_permitidos' => [2]
+    ],
+
+    // ==========================================
+    // DIRECTOR (Rol 5)
+    // ==========================================
+    'dir_inicio' => [
+        'title' => 'RITE — Panel del Director',
+        'css' => 'css/dashboardDirector-jefeArea.css',
+        'content' => 'paginas/director/inicio_directo.php',
+        'js' => 'js/director/dashboard.js',
+        'roles_permitidos' => [5]
+    ],
+
+    // ==========================================
+    // JEFE DE ÁREA (Rol 6)
+    // ==========================================
+    'jefe_inicio' => [
+        'title' => 'RITE — Panel del Jefe de Área',
+        'css' => 'css/dashboardDirector-jefeArea.css',
+        'content' => 'paginas/jefeArea/jefe_area_inicio.php',
+        'js' => 'js/jefeArea/dashboard.js',
+        'roles_permitidos' => [6]
     ]
 ];
 
-// Fallback por si la página no existe
+// Validar si la página existe
 if (!array_key_exists($p, $pages)) {
     $p = 'inicio';
+}
+
+if (!isset($pages[$p])) {
+    header("Location: index.php?p=alum_inicio");
+    exit;
+}
+
+// Validar permisos de rol
+$roles_permitidos = $pages[$p]['roles_permitidos'] ?? [];
+
+if (!in_array($id_rol, $roles_permitidos)) {
+    header("HTTP/1.1 403 Forbidden");
+    echo "<div style='font-family:sans-serif; text-align:center; padding:50px;'>
+            <h2>Acceso Denegado (Error 403)</h2>
+            <p>No tienes los permisos requeridos para visualizar esta sección.</p>
+            <a href='index.php'>Volver al inicio</a>
+          </div>";
+    exit;
 }
 
 $currentPage = $pages[$p];
@@ -46,11 +183,25 @@ $currentPage = $pages[$p];
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <title><?php echo $currentPage['title']; ?></title>
   
-  <!-- Usar la misma línea de estilos de css/styles.css como base global -->
-  <link rel="stylesheet" href="css/styles.css" />
-  
-  <!-- Estilos específicos de la sección activa -->
-  <?php if ($p !== 'inicio'): ?>
+  <link rel="stylesheet" href="css/sidebar.css" />
+    <style>
+        /* Fuerza a que el Sidebar y el Main Content se alineen lado a lado */
+        body, .app-container {
+            display: flex;
+            flex-direction: row;
+            min-height: 100vh;
+            width: 100%;
+            margin: 0;
+        }
+
+        .main-content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+  <?php if ($currentPage['css'] !== 'css/sidebar.css'): ?>
     <link rel="stylesheet" href="<?php echo $currentPage['css']; ?>" />
   <?php endif; ?>
   
@@ -59,17 +210,14 @@ $currentPage = $pages[$p];
 </head>
 <body>
 
-  <!-- Sidebar / Navbar -->
-  <?php require "./partials/navbar.php"; ?>
+  <?php require "./includes/sidebar.php"; ?>
 
-  <!-- Mobile overlays para compatibilidad con distintos scripts -->
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <div class="overlay" id="overlay"></div>
 
-  <!-- Content of the current page -->
+  <!-- Carga del contenido dinámico -->
   <?php include $currentPage['content']; ?>
 
-  <!-- Scripts -->
   <script src="<?php echo $currentPage['js']; ?>"></script>
 </body>
 </html>

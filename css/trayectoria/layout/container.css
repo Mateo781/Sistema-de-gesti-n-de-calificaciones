@@ -1,0 +1,13 @@
+.demo-wrap {
+  padding: 1.5rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Ajuste responsivo para pantallas muy pequeñas */
+@media (max-width: 768px) {
+  .demo-wrap {
+    padding: 1rem 0.5rem;
+  }
+}

@@ -1,34 +1,31 @@
-/* ══════════════════════════════════════════════════════════
-   RITE · Ver Calificaciones — app.js
-══════════════════════════════════════════════════════════ */
 'use strict';
 
-/* ─── DATA ───────────────────────────────────────────────── */
+/* ─── DATA ─────────────────────────────────────────────────── */
 
 const EVALUACIONES = [
-  { id:1,  materia:'Matemática',               tipo:'Parcial',        nota:5,  fecha:'2025-03-20', trim:1, estado:'proceso'         },
-  { id:2,  materia:'Matemática',               tipo:'Recuperatorio',  nota:6,  fecha:'2025-04-10', trim:1, estado:'proceso'         },
-  { id:3,  materia:'Matemática',               tipo:'Trabajo práctico',nota:5, fecha:'2025-05-05', trim:2, estado:'intensificacion'  },
-  { id:4,  materia:'Lengua y Literatura',      tipo:'Parcial',        nota:8,  fecha:'2025-03-25', trim:1, estado:'aprobada'        },
-  { id:5,  materia:'Lengua y Literatura',      tipo:'Trabajo práctico',nota:9, fecha:'2025-04-22', trim:2, estado:'aprobada'        },
-  { id:6,  materia:'Historia',                 tipo:'Parcial',        nota:9,  fecha:'2025-03-18', trim:1, estado:'aprobada'        },
-  { id:7,  materia:'Historia',                 tipo:'Trabajo práctico',nota:8, fecha:'2025-05-12', trim:2, estado:'aprobada'        },
-  { id:8,  materia:'Geografía',                tipo:'Parcial',        nota:7,  fecha:'2025-03-28', trim:1, estado:'aprobada'        },
-  { id:9,  materia:'Geografía',                tipo:'Trabajo práctico',nota:7, fecha:'2025-04-30', trim:2, estado:'aprobada'        },
-  { id:10, materia:'Biología',                 tipo:'Parcial',        nota:4,  fecha:'2025-03-22', trim:1, estado:'desaprobada'     },
-  { id:11, materia:'Biología',                 tipo:'Recuperatorio',  nota:4,  fecha:'2025-04-15', trim:1, estado:'desaprobada'     },
-  { id:12, materia:'Física',                   tipo:'Parcial',        nota:7,  fecha:'2025-04-08', trim:1, estado:'aprobada'        },
-  { id:13, materia:'Física',                   tipo:'Trabajo práctico',nota:6, fecha:'2025-05-20', trim:2, estado:'proceso'         },
-  { id:14, materia:'Química',                  tipo:'Parcial',        nota:8,  fecha:'2025-03-17', trim:1, estado:'aprobada'        },
-  { id:15, materia:'Química',                  tipo:'Trabajo práctico',nota:9, fecha:'2025-05-23', trim:2, estado:'aprobada'        },
-  { id:16, materia:'Inglés',                   tipo:'Parcial',        nota:10, fecha:'2025-03-24', trim:1, estado:'aprobada'        },
-  { id:17, materia:'Inglés',                   tipo:'Oral',           nota:9,  fecha:'2025-04-28', trim:2, estado:'aprobada'        },
-  { id:18, materia:'Educación Física',         tipo:'Concepto',       nota:9,  fecha:'2025-04-01', trim:1, estado:'aprobada'        },
-  { id:19, materia:'Informática Aplicada',     tipo:'Trabajo práctico',nota:9, fecha:'2025-03-29', trim:1, estado:'aprobada'        },
-  { id:20, materia:'Informática Aplicada',     tipo:'Proyecto',       nota:10, fecha:'2025-05-15', trim:2, estado:'aprobada'        },
-  { id:21, materia:'Programación y Redes',     tipo:'Trabajo práctico',nota:8, fecha:'2025-04-17', trim:1, estado:'aprobada'        },
-  { id:22, materia:'Programación y Redes',     tipo:'Parcial',        nota:null,fecha:'2025-06-10',trim:2, estado:'proceso'         },
-  { id:23, materia:'Construcción de Ciudadanía',tipo:'Trabajo práctico',nota:null,fecha:'2025-06-20',trim:2,estado:'proceso'        },
+  { id:1,  materia:'Matemática',               tipo:'Parcial',        nota:5,  fecha:'2025-03-20', Cuatri:1, estado:'proceso'         },
+  { id:2,  materia:'Matemática',               tipo:'Recuperatorio',  nota:6,  fecha:'2025-04-10', Cuatri:1, estado:'proceso'         },
+  { id:3,  materia:'Matemática',               tipo:'Trabajo práctico',nota:5, fecha:'2025-05-05', Cuatri:2, estado:'intensificacion' },
+  { id:4,  materia:'Lengua y Literatura',      tipo:'Parcial',        nota:8,  fecha:'2025-03-25', Cuatri:1, estado:'aprobada'        },
+  { id:5,  materia:'Lengua y Literatura',      tipo:'Trabajo práctico',nota:9, fecha:'2025-04-22', Cuatri:2, estado:'aprobada'        },
+  { id:6,  materia:'Historia',                 tipo:'Parcial',        nota:9,  fecha:'2025-03-18', Cuatri:1, estado:'aprobada'        },
+  { id:7,  materia:'Historia',                 tipo:'Trabajo práctico',nota:8, fecha:'2025-05-12', Cuatri:2, estado:'aprobada'        },
+  { id:8,  materia:'Geografía',                tipo:'Parcial',        nota:7,  fecha:'2025-03-28', Cuatri:1, estado:'aprobada'        },
+  { id:9,  materia:'Geografía',                tipo:'Trabajo práctico',nota:7, fecha:'2025-04-30', Cuatri:2, estado:'aprobada'        },
+  { id:10, materia:'Biología',                 tipo:'Parcial',        nota:4,  fecha:'2025-03-22', Cuatri:1, estado:'desaprobada'     },
+  { id:11, materia:'Biología',                 tipo:'Recuperatorio',  nota:4,  fecha:'2025-04-15', Cuatri:1, estado:'desaprobada'     },
+  { id:12, materia:'Física',                   tipo:'Parcial',        nota:7,  fecha:'2025-04-08', Cuatri:1, estado:'aprobada'        },
+  { id:13, materia:'Física',                   tipo:'Trabajo práctico',nota:6, fecha:'2025-05-20', Cuatri:2, estado:'proceso'         },
+  { id:14, materia:'Química',                  tipo:'Parcial',        nota:8,  fecha:'2025-03-17', Cuatri:1, estado:'aprobada'        },
+  { id:15, materia:'Química',                  tipo:'Trabajo práctico',nota:9, fecha:'2025-05-23', Cuatri:2, estado:'aprobada'        },
+  { id:16, materia:'Inglés',                   tipo:'Parcial',        nota:10, fecha:'2025-03-24', Cuatri:1, estado:'aprobada'        },
+  { id:17, materia:'Inglés',                   tipo:'Oral',           nota:9,  fecha:'2025-04-28', Cuatri:2, estado:'aprobada'        },
+  { id:18, materia:'Educación Física',         tipo:'Concepto',       nota:9,  fecha:'2025-04-01', Cuatri:1, estado:'aprobada'        },
+  { id:19, materia:'Informática Aplicada',     tipo:'Trabajo práctico',nota:9, fecha:'2025-03-29', Cuatri:1, estado:'aprobada'        },
+  { id:20, materia:'Informática Aplicada',     tipo:'Proyecto',       nota:10, fecha:'2025-05-15', Cuatri:2, estado:'aprobada'        },
+  { id:21, materia:'Programación y Redes',     tipo:'Trabajo práctico',nota:8, fecha:'2025-04-17', Cuatri:1, estado:'aprobada'        },
+  { id:22, materia:'Programación y Redes',     tipo:'Parcial',        nota:null,fecha:'2025-06-10',Cuatri:2, estado:'proceso'         },
+  { id:23, materia:'Construcción de Ciudadanía',tipo:'Trabajo práctico',nota:null,fecha:'2025-06-20',Cuatri:2,estado:'proceso'        },
 ];
 
 const ALERTS = [
@@ -43,13 +40,14 @@ const ALERTS = [
 ];
 
 const PROXIMAS = [
-  { day:'10', mon:'Jun', materia:'Biología',          tipo:'Recuperatorio · 14:00 hs.',   chip:'recup'   },
+  { day:'10', mon:'Jun', materia:'Biología',          tipo:'Recuperatorio · 14:00 hs.',  chip:'recup'   },
   { day:'18', mon:'Jun', materia:'Matemática',        tipo:'Recuperatorio · 8:00 hs.',    chip:'recup'   },
   { day:'25', mon:'Jun', materia:'Física',            tipo:'Trabajo práctico grupal',      chip:'tp'      },
-  { day:'02', mon:'Jul', materia:'Programación y Redes', tipo:'Parcial · 1° hora',        chip:'parcial' },
+  { day:'02', mon:'Jul', materia:'Programación y Redes', tipo:'Parcial · 1° hora',         chip:'parcial' },
 ];
 
-/* ─── STATE ───────────────────────────────────────────────── */
+/* ─── STATE ────────────────────────────────────────────────── */
+
 const state = {
   data: [...EVALUACIONES],
   filtered: [...EVALUACIONES],
@@ -59,16 +57,18 @@ const state = {
   pageSize: 8,
   search: '',
   estado: '',
-  trim: '',
+  Cuatri: '',
 };
 
-/* ─── HELPERS ─────────────────────────────────────────────── */
+/* ─── HELPERS ──────────────────────────────────────────────── */
 
 const $ = id => document.getElementById(id);
+
 const fmtDate = iso => {
   const d = new Date(iso + 'T00:00:00');
   return d.toLocaleDateString('es-AR', { day:'2-digit', month:'short', year:'numeric' });
 };
+
 const notaClass = n => n === null ? '' : n >= 7 ? 'alta' : n >= 6 ? 'media' : 'baja';
 const notaStr   = n => n === null ? '<span style="color:var(--t3)">—</span>' : n;
 
@@ -92,11 +92,11 @@ function badgeHtml(estado) {
   return `<span class="badge ${cls}">${lbl}</span>`;
 }
 
-function trimLabel(t) {
-  return `<span class="td-trim">${t}° Trim.</span>`;
+function CuatriLabel(t) {
+  return `<span class="td-Cuatri">${t}° Cuatri.</span>`;
 }
 
-/* ─── FILTER + SORT ──────────────────────────────────────── */
+/* ─── FILTER + SORT ────────────────────────────────────────── */
 
 function applyFilters() {
   let d = [...state.data];
@@ -105,9 +105,9 @@ function applyFilters() {
     d = d.filter(r => r.materia.toLowerCase().includes(q) || r.tipo.toLowerCase().includes(q));
   }
   if (state.estado) d = d.filter(r => r.estado === state.estado);
-  if (state.trim)   d = d.filter(r => String(r.trim) === state.trim);
+  if (state.Cuatri)   d = d.filter(r => String(r.Cuatri) === state.Cuatri);
 
-  // Sort
+  // Sistema de Ordenamiento
   d.sort((a, b) => {
     let va = a[state.sortCol];
     let vb = b[state.sortCol];
@@ -124,21 +124,31 @@ function applyFilters() {
   state.page = 1;
 }
 
-/* ─── RENDER TABLE ───────────────────────────────────────── */
+/* ─── RENDER TABLE ─────────────────────────────────────────── */
 
 function renderTable() {
   const tbody = $('evalBody');
+  if (!tbody) return;
+
   const { filtered, page, pageSize } = state;
   const total  = filtered.length;
   const start  = (page - 1) * pageSize;
   const slice  = filtered.slice(start, start + pageSize);
 
-  $('rowCount').textContent = `${total} registro${total !== 1 ? 's' : ''} encontrado${total !== 1 ? 's' : ''}`;
-  $('footerNote').textContent = total > 0 ? `Mostrando ${start + 1}–${Math.min(start + pageSize, total)} de ${total}` : '';
+  // Validaciones de existencia de elementos del DOM
+  const rowCountEl = $('rowCount');
+  if (rowCountEl) {
+    rowCountEl.textContent = `${total} registro${total !== 1 ? 's' : ''} encontrado${total !== 1 ? 's' : ''}`;
+  }
+
+  const footerNoteEl = $('footerNote');
+  if (footerNoteEl) {
+    footerNoteEl.textContent = total > 0 ? `Mostrando ${start + 1}–${Math.min(start + pageSize, total)} de ${total}` : '';
+  }
 
   if (total === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="td-empty">
-      <svg viewBox="0 0 40 40" width="36" height="36" fill="none"><rect x="8" y="6" width="24" height="28" rx="4" stroke="currentColor" stroke-width="1.8"/><line x1="14" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="19" x2="26" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="24" x2="20" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    tbody.innerHTML = `<tr><td colspan="6" class="td-empty" style="text-align:center; padding:32px;">
+      <svg viewBox="0 0 40 40" width="36" height="36" fill="none" style="margin:0 auto 12px; display:block;"><rect x="8" y="6" width="24" height="28" rx="4" stroke="currentColor" stroke-width="1.8"/><line x1="14" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="19" x2="26" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="24" x2="20" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       No se encontraron registros con los filtros aplicados.
     </td></tr>`;
     renderPagination(0, 0);
@@ -158,7 +168,7 @@ function renderTable() {
         </td>
         <td class="td-nota ${notaClass(row.nota)}">${notaStr(row.nota)}</td>
         <td class="td-fecha">${fmtDate(row.fecha)}</td>
-        <td>${trimLabel(row.trim)}</td>
+        <td>${CuatriLabel(row.Cuatri)}</td>
         <td>${badgeHtml(row.estado)}</td>
       </tr>`;
   }).join('');
@@ -166,11 +176,13 @@ function renderTable() {
   renderPagination(total, page);
 }
 
-/* ─── PAGINATION ─────────────────────────────────────────── */
+/* ─── PAGINATION ───────────────────────────────────────────── */
 
 function renderPagination(total, current) {
-  const pages = Math.ceil(total / state.pageSize);
   const el = $('pagination');
+  if (!el) return;
+
+  const pages = Math.ceil(total / state.pageSize);
   if (pages <= 1) { el.innerHTML = ''; return; }
 
   let html = `<button class="page-btn" data-p="${current - 1}" ${current === 1 ? 'disabled' : ''}>
@@ -199,23 +211,30 @@ function renderPagination(total, current) {
   });
 }
 
-/* ─── STAT CARDS ─────────────────────────────────────────── */
+/* ─── STAT CARDS ──────────────────────────────────────────── */
 
 function renderStats() {
+  const statAprob = $('statAprobadas');
+  const statPend  = $('statPendientes');
+  const statProm  = $('statPromedio');
+
   const aprobadas  = new Set(EVALUACIONES.filter(e => e.estado === 'aprobada').map(e => e.materia)).size;
   const pendientes = new Set(EVALUACIONES.filter(e => ['desaprobada','proceso','intensificacion'].includes(e.estado)).map(e => e.materia)).size;
   const notas      = EVALUACIONES.filter(e => e.nota !== null).map(e => e.nota);
   const prom       = notas.length ? (notas.reduce((a,b) => a+b, 0) / notas.length).toFixed(1) : '—';
 
-  $('statAprobadas').textContent  = aprobadas;
-  $('statPendientes').textContent = pendientes;
-  $('statPromedio').textContent   = prom;
+  if (statAprob) statAprob.textContent = aprobadas;
+  if (statPend)  statPend.textContent  = pendientes;
+  if (statProm)  statProm.textContent  = prom;
 }
 
 /* ─── ALERTS ─────────────────────────────────────────────── */
 
 function renderAlerts() {
-  $('alertList').innerHTML = ALERTS.map(a => `
+  const el = $('alertList');
+  if (!el) return;
+
+  el.innerHTML = ALERTS.map(a => `
     <div class="alert-item ${a.type}">
       <div class="alert-ico ${a.ico}">${a.svg}</div>
       <div>
@@ -229,7 +248,10 @@ function renderAlerts() {
 /* ─── PROXIMAS ───────────────────────────────────────────── */
 
 function renderProximas() {
-  $('proxList').innerHTML = PROXIMAS.map(p => `
+  const el = $('proxList');
+  if (!el) return;
+
+  el.innerHTML = PROXIMAS.map(p => `
     <div class="prox-item">
       <div class="prox-date">
         <span class="prox-day">${p.day}</span>
@@ -243,9 +265,12 @@ function renderProximas() {
     </div>`).join('');
 }
 
-/* ─── PROMEDIOS ──────────────────────────────────────────── */
+/* ─── PROMEDIOS LISTA ────────────────────────────────────── */
 
 function renderPromedios() {
+  const el = $('promediosList');
+  if (!el) return;
+
   const byMateria = {};
   EVALUACIONES.forEach(e => {
     if (e.nota === null) return;
@@ -258,7 +283,7 @@ function renderPromedios() {
     .sort((a,b) => b.avg - a.avg)
     .slice(0, 6);
 
-  $('promediosList').innerHTML = arr.map(({ mat, avg }) => {
+  el.innerHTML = arr.map(({ mat, avg }) => {
     const cls = avg >= 7 ? 'green' : avg >= 6 ? 'yellow' : 'red';
     const pct  = Math.round((avg / 10) * 100);
     const label = mat.length > 20 ? mat.slice(0,18) + '…' : mat;
@@ -273,7 +298,7 @@ function renderPromedios() {
   }).join('');
 }
 
-/* ─── SORT ───────────────────────────────────────────────── */
+/* ─── SORT ACTIONS ───────────────────────────────────────── */
 
 function initSort() {
   document.querySelectorAll('.th-sortable').forEach(th => {
@@ -293,53 +318,70 @@ function initSort() {
   });
 }
 
-/* ─── TRIM TABS ─────────────────────────────────────────── */
+/* ─── CUATRIMESTRE TABS ───────────────────────────────────── */
 
-function initTrimTabs() {
-  document.querySelectorAll('.trim-tab').forEach(tab => {
+function initCuatriTabs() {
+  document.querySelectorAll('.Cuatri-tab').forEach(tab => {
     tab.addEventListener('click', () => {
-      document.querySelectorAll('.trim-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.Cuatri-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      state.trim = tab.dataset.trim === 'all' ? '' : tab.dataset.trim;
-      $('filterTrimestre').value = state.trim;
+      
+      // Corregido: dataset siempre mapea en minúsculas (data-cuatri -> dataset.cuatri)
+      const targetCuatri = tab.dataset.cuatri || tab.dataset.Cuatri || 'all';
+      state.Cuatri = targetCuatri === 'all' ? '' : targetCuatri;
+      
+      const selectEl = $('filterCuatrimestre');
+      if (selectEl) selectEl.value = state.Cuatri;
+      
       applyFilters();
       renderTable();
     });
   });
 }
 
-/* ─── FILTERS ────────────────────────────────────────────── */
+/* ─── INPUT FILTERS ──────────────────────────────────────── */
 
 function initFilters() {
   let debounce;
-  $('searchInput').addEventListener('input', e => {
+  const searchInput = $('searchInput');
+  const filterEstado = $('filterEstado');
+  const filterCuatri = $('filterCuatrimestre');
+  const filterReset = $('filterReset');
+
+  searchInput?.addEventListener('input', e => {
     clearTimeout(debounce);
     debounce = setTimeout(() => {
-      state.search = e.target.value.trim();
+      state.search = e.target.value.trim(); // ¡Ubicación del error corregido! Antes: .Cuatri()
       applyFilters();
       renderTable();
     }, 200);
   });
-  $('filterEstado').addEventListener('change', e => {
+
+  filterEstado?.addEventListener('change', e => {
     state.estado = e.target.value;
     applyFilters();
     renderTable();
   });
-  $('filterTrimestre').addEventListener('change', e => {
-    state.trim = e.target.value;
-    // Sync trim tabs
-    document.querySelectorAll('.trim-tab').forEach(t => {
-      t.classList.toggle('active', t.dataset.trim === (state.trim || 'all'));
+
+  filterCuatri?.addEventListener('change', e => {
+    state.Cuatri = e.target.value;
+    document.querySelectorAll('.Cuatri-tab').forEach(t => {
+      const tabVal = t.dataset.cuatri || t.dataset.Cuatri || 'all';
+      t.classList.toggle('active', tabVal === (state.Cuatri || 'all'));
     });
     applyFilters();
     renderTable();
   });
-  $('filterReset').addEventListener('click', () => {
-    state.search = ''; state.estado = ''; state.trim = '';
-    $('searchInput').value = '';
-    $('filterEstado').value = '';
-    $('filterTrimestre').value = '';
-    document.querySelectorAll('.trim-tab').forEach(t => t.classList.toggle('active', t.dataset.trim === 'all'));
+
+  filterReset?.addEventListener('click', () => {
+    state.search = ''; state.estado = ''; state.Cuatri = '';
+    if (searchInput) searchInput.value = '';
+    if (filterEstado) filterEstado.value = '';
+    if (filterCuatri) filterCuatri.value = '';
+    document.querySelectorAll('.Cuatri-tab').forEach(t => {
+      const tabVal = t.dataset.cuatri || t.dataset.Cuatri || 'all';
+      t.classList.toggle('active', tabVal === 'all');
+    });
     applyFilters();
     renderTable();
   });
@@ -350,19 +392,24 @@ function initFilters() {
 function initFilterToggle() {
   const bar = $('filterBar');
   const btn = $('btnFilter');
+  if (!bar || !btn) return;
+
   btn.addEventListener('click', () => {
     bar.classList.toggle('open');
     btn.classList.toggle('active');
     if (bar.classList.contains('open')) {
-      $('searchInput').focus();
+      $('searchInput')?.focus();
     }
   });
 }
 
-/* ─── EXPORT ─────────────────────────────────────────────── */
+/* ─── EXPORT BUTTON ──────────────────────────────────────── */
 
 function initExport() {
-  $('btnExport').addEventListener('click', function() {
+  const btn = $('btnExport');
+  if (!btn) return;
+
+  btn.addEventListener('click', function() {
     const orig = this.innerHTML;
     this.innerHTML = `<svg viewBox="0 0 16 16" width="13" height="13" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M2.5 12h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>Generando…</span>`;
     this.disabled = true;
@@ -376,16 +423,22 @@ function initMobileSidebar() {
   const sidebar = $('sidebar');
   const overlay = $('overlay');
   const ham     = $('hamburger');
-  const open    = () => { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; };
-  const close   = () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; };
+  if (!sidebar || !overlay) return;
+
+  const open  = () => { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; };
+  const close = () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; };
+  
   ham?.addEventListener('click', open);
   overlay?.addEventListener('click', close);
-  document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => { if (window.innerWidth < 860) close(); }));
+  
+  document.querySelectorAll('.nav-link').forEach(l => {
+    l.addEventListener('click', () => { if (window.innerWidth < 860) close(); });
+  });
 }
 
-/* ─── INIT ───────────────────────────────────────────────── */
+/* ─── INITIALIZATION ─────────────────────────────────────── */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initDashboard() {
   renderStats();
   renderAlerts();
   renderProximas();
@@ -393,18 +446,27 @@ document.addEventListener('DOMContentLoaded', () => {
   applyFilters();
   renderTable();
   initSort();
-  initTrimTabs();
+  initCuatriTabs();
   initFilters();
   initFilterToggle();
   initExport();
   initMobileSidebar();
 
-  // Animate bars after layout
+  // Animación suave de barras de promedio diferida
   setTimeout(() => {
     document.querySelectorAll('.prom-bar-fill').forEach(el => {
       const w = el.style.width;
       el.style.width = '0';
-      requestAnimationFrame(() => { requestAnimationFrame(() => { el.style.width = w; }); });
+      requestAnimationFrame(() => { 
+        requestAnimationFrame(() => { el.style.width = w; }); 
+      });
     });
   }, 300);
-});
+}
+
+// Inicialización segura según el ciclo de vida del DOM
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDashboard);
+} else {
+  initDashboard();
+}

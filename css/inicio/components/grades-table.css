@@ -1,0 +1,94 @@
+/*  GRADES TABLE  */
+.table-section {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.table-section .section-header {
+  padding: 18px 20px 0;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 0;
+}
+.table-filters {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+.filter-btn {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: none;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-btn:hover { border-color: var(--brand-accent); color: var(--brand-accent); }
+.filter-btn.active {
+  background: var(--brand-dark);
+  border-color: var(--brand-dark);
+  color: white;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 14px;
+}
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.grades-table thead tr {
+  background: var(--bg-page);
+  border-bottom: 1px solid var(--border);
+}
+.grades-table th {
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+.grades-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
+  font-size: 13px;
+}
+.grades-table tbody tr { transition: background var(--transition); }
+.grades-table tbody tr:hover { background: var(--bg-row-hover); }
+.grades-table tbody tr:last-child td { border-bottom: none; }
+
+.td-materia { font-weight: 600; }
+.td-docente { color: var(--text-secondary); font-size: 12px; }
+.td-nota {
+  font-weight: 700;
+  text-align: center;
+}
+.td-nota.nota-alta  { color: var(--green); }
+.td-nota.nota-media { color: var(--yellow); }
+.td-nota.nota-baja  { color: var(--red); }
+.td-nota.nota-nd    { color: var(--gray); }
+
+.td-prom {
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+}
+.td-prom.prom-alta  { color: var(--green); }
+.td-prom.prom-media { color: var(--yellow); }
+.td-prom.prom-baja  { color: var(--red); }
+
+@media (max-width: 420px) {
+  .table-filters { display: none; }
+}

@@ -1,0 +1,314 @@
+/* ==========================================================================
+   Dashboard Director / Jefe de Área — RITE
+   Paleta institucional azul / blanco / gris. Sora para títulos, Inter para
+   texto y datos. Modo claro, bordes redondeados, sombras suaves.
+   ========================================================================== */
+
+:root {
+    --blue-900: #0B2559;
+    --blue-700: #1E4FD8;
+    --blue-500: #3B82F6;
+    --sky-400:  #0EA5E9;
+    --indigo:   #6366F1;
+
+    --bg:        #F4F6FA;
+    --surface:   #FFFFFF;
+    --border:    #E3E8F0;
+    --text:      #1B2430;
+    --text-muted:#64748B;
+
+    --green:  #15A26B;
+    --amber:  #D97706;
+    --red:    #DC2626;
+
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 10px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04);
+    --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.10);
+
+    --font-display: 'Sora', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Contenedor Principal ---------- */
+.content-body {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 28px 32px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ---------- Tarjetas de Resumen (Summary Cards) ---------- */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.summary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Variaciones de color para íconos usando color-mix para fondos suaves */
+.card-icon.blue { background: color-mix(in srgb, var(--blue-700) 12%, white); color: var(--blue-700); }
+.card-icon.green { background: color-mix(in srgb, var(--green) 12%, white); color: var(--green); }
+.card-icon.red { background: color-mix(in srgb, var(--red) 12%, white); color: var(--red); }
+.card-icon.amber { background: color-mix(in srgb, var(--amber) 12%, white); color: var(--amber); }
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1;
+}
+
+.card-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.card-value {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+}
+
+.card-sub {
+    font-size: 11.5px;
+    color: var(--text-muted);
+}
+
+/* Barra inferior decorativa */
+.card-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+}
+.card-bar.blue { background: var(--blue-700); }
+.card-bar.green { background: var(--green); }
+.card-bar.red { background: var(--red); }
+
+/* ---------- Secciones y Tablas ---------- */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.table-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue-900);
+    margin: 0;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+}
+
+.grades-table th {
+    text-align: left;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+}
+
+.grades-table th:first-child { border-top-left-radius: var(--radius-sm); }
+.grades-table th:last-child { border-top-right-radius: var(--radius-sm); }
+
+.grades-table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+}
+
+.grades-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.grades-table tbody tr:hover {
+    background: #F8FAFC;
+}
+
+/* ---------- Botones (Filter-btn y de acciones) ---------- */
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.filter-btn:hover {
+    background: var(--bg);
+    border-color: #CBD5E1;
+}
+
+.filter-btn.active {
+    background: var(--blue-700);
+    color: white;
+    border-color: var(--blue-700);
+}
+
+.filter-btn.active:hover {
+    background: var(--blue-900);
+    border-color: var(--blue-900);
+}
+
+/* ---------- Formularios (Inputs y Textareas) ---------- */
+input[type="text"], textarea {
+    padding: 12px 14px !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-md) !important;
+    font-family: var(--font-body) !important;
+    font-size: 14px !important;
+    color: var(--text) !important;
+    background: var(--surface) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    outline: none !important;
+}
+
+input[type="text"]:focus, textarea:focus {
+    border-color: var(--blue-500) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #94A3B8 !important;
+}
+
+/* ---------- Modal de Justificación ---------- */
+.modal-justificacion {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content-dir {
+    background: var(--surface);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 480px;
+    font-family: var(--font-body);
+    box-shadow: var(--shadow-lg);
+    animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content-dir h3 {
+    margin: 0 0 8px 0;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.modal-content-dir p {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.modal-actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .content-body { padding: 20px 16px 48px; }
+}
+
+@media (max-width: 560px) {
+    .summary-cards { grid-template-columns: 1fr; }
+    .card-value { font-size: 24px; }
+}
