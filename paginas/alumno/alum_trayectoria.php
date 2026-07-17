@@ -1,25 +1,5 @@
 <main class="main-content">
-
-  <header class="top-header">
-    <div class="header-left">
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-        <svg viewBox="0 0 20 20" width="20" height="20"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </button>
-      <div class="header-title-block">
-        <h1 class="header-title">Trayectoria Educativa</h1>
-        <div class="header-breadcrumb">
-          <span class="breadcrumb-year">7° 2° Grupo B</span>
-          <span class="breadcrumb-sep">•</span>
-          <span class="breadcrumb-division">Orientación Programacion</span>
-        </div>
-      </div>
-    </div>
-    <div class="header-right">
-      <div class="header-meta">
-        <span class="ciclo-badge">Ciclo 2026</span>
-      </div>
-    </div>
-  </header>
+  <?php include_once dirname(__DIR__, 2) . '/includes/topbar.php'; ?>
 
   <div class="demo-wrap">
     <div class="timeline-scroll-wrapper" id="timelineWrapper">

@@ -1,3 +1,6 @@
+@import url('inicio/base/variables.css');
+@import url('inicio/layout/main-content.css');
+
 .main {
   /* Variables locales alineadas con calificaciones */
   --accent: #2557d6;

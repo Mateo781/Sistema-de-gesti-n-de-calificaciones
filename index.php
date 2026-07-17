@@ -120,9 +120,9 @@ $pages = [
     ],
     'prof_intensificaciones' => [
         'title' => 'RITE — Gestión de RITE e Intensificación',
-        'css' => 'css/situacion.css',
+        'css' => 'css/profesor/prof_intensificaciones.css',
         'content' => 'paginas/profesor/intensificaciones.php',
-        'js' => 'js/situacion.js',
+        'js' => 'js/profesor/intensificaciones.js',
         'roles_permitidos' => [2]
     ],
 

@@ -5,12 +5,31 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $seccion_actual = $_GET['p'] ?? 'inicio';
 
-$header_curso = $_SESSION['alumno_curso'] ?? "7° 2° Grupo B"; 
-$header_orientacion = $_SESSION['alumno_orientacion'] ?? "Orientación Programacion";
+$id_rol = $_SESSION['usuario_rol'] ?? null;
+
+if ($id_rol == 2) {
+    $header_curso = "Panel Docente";
+    $header_orientacion = "Gestión Académica";
+} else {
+    $header_curso = $_SESSION['alumno_curso'] ?? "7° 2° Grupo B"; 
+    $header_orientacion = $_SESSION['alumno_orientacion'] ?? "Orientación Programacion";
+}
 $header_titulo = "Panel de Control";
 $mostrar_filtros = false; 
 
 switch ($seccion_actual) {
+    case 'prof_calificaciones':
+        $header_titulo = "Registro de Calificaciones";
+        $header_orientacion = "Ingreso de Notas";
+        $mostrar_filtros = false;
+        break;
+
+    case 'prof_evaluaciones':
+        $header_titulo = "Planificar Actividades";
+        $header_orientacion = "Planificación";
+        $mostrar_filtros = false;
+        break;
+
     case 'alum_actividades': 
         $header_titulo = "Mis Actividades y Evaluaciones";
         $mostrar_filtros = true;
@@ -29,6 +48,16 @@ switch ($seccion_actual) {
 
     case 'alum_alertas':
         $header_titulo = "Alertas";
+        $mostrar_filtros = false;
+        break;
+
+    case 'alum_situacion':
+        $header_titulo = "Situación Académica";
+        $mostrar_filtros = false;
+        break;
+
+    case 'trayectoria':
+        $header_titulo = "Trayectoria Educativa";
         $mostrar_filtros = false;
         break;
 }
@@ -60,6 +89,13 @@ $filtro_activo = $_GET['cuatrimestre'] ?? 'todas';
         <div class="header-meta">
             <span class="ciclo-badge">Ciclo 2026</span>
             
+            <?php if ($seccion_actual === 'alum_situacion'): ?>
+                <button class="btn-export" id="btnExport">
+                    <svg viewBox="0 0 16 16" width="13" height="13" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M2.5 12h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                    <span>Descargar Analítico</span>
+                </button>
+            <?php endif; ?>
+
             <?php if ($mostrar_filtros): ?>
                 <div class="filter-tabs">
                     <a href="?p=<?= $seccion_actual ?>&cuatrimestre=todas" class="tab-btn <?= $filtro_activo === 'todas' ? 'active' : '' ?>">Todas</a>

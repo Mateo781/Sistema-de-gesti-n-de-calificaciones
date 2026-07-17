@@ -1,3 +1,6 @@
+@import url('inicio/base/variables.css');
+@import url('inicio/layout/main-content.css');
+
 @import url('trayectoria/base/reset.css');
 
 @import url('trayectoria/layout/container.css');

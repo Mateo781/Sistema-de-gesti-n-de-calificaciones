@@ -122,3 +122,142 @@ function guardarNotas(PDO $pdo, int $id_curso_materia, int $id_periodo, int $id_
         ];
     }
 }
+
+function obtenerAlumnosTrayectoria(PDO $pdo, int $id_curso, int $id_curso_materia, int $id_materia): array {
+    $query = "
+        SELECT 
+            u.id AS id_alumno, 
+            u.apellido, 
+            u.nombre, 
+            u.dni,
+            t.id_estado_materia,
+            em.nombre AS estado_materia,
+            t.promedio_final,
+            t.observaciones,
+            (SELECT COUNT(*) FROM intensificaciones i WHERE i.id_alumno = u.id AND i.id_curso_materia = :cmd) AS tiene_intensificacion,
+            (SELECT COUNT(*) FROM recursadas r WHERE r.id_alumno = u.id AND r.id_materia = :materia) AS tiene_recursada
+        FROM usuarios u
+        JOIN inscripciones ins ON ins.id_alumno = u.id
+        LEFT JOIN trayectorias t ON t.id_alumno = u.id AND t.id_curso_materia = :cmd
+        LEFT JOIN estados_materia em ON t.id_estado_materia = em.id
+        WHERE ins.id_curso = :curso 
+          AND ins.activo = 1 
+          AND u.id_rol = 3
+        ORDER BY u.apellido ASC, u.nombre ASC
+    ";
+    
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([
+        ':cmd' => $id_curso_materia,
+        ':materia' => $id_materia,
+        ':curso' => $id_curso
+    ]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function guardarTrayectoriaRite(
+    PDO $pdo, 
+    int $id_docente, 
+    int $id_alumno, 
+    int $id_curso_materia, 
+    int $id_estado_materia, 
+    ?float $promedio, 
+    string $observaciones, 
+    bool $chk_intensificacion, 
+    int $id_periodo_int, 
+    string $motivo_int, 
+    bool $chk_recursada, 
+    string $motivo_rec, 
+    int $id_curso_sel
+): array {
+    try {
+        $pdo->beginTransaction();
+
+        // 1. Guardar o actualizar la trayectoria
+        $stmt = $pdo->prepare("
+            INSERT INTO trayectorias (id_alumno, id_curso_materia, id_estado_materia, promedio_final, observaciones)
+            VALUES (:id_al, :cmd, :estado, :prom, :obs)
+            ON DUPLICATE KEY UPDATE 
+                id_estado_materia = VALUES(id_estado_materia),
+                promedio_final = VALUES(promedio_final),
+                observaciones = VALUES(observaciones)
+        ");
+        $stmt->execute([
+            ':id_al' => $id_alumno,
+            ':cmd' => $id_curso_materia,
+            ':estado' => $id_estado_materia,
+            ':prom' => $promedio,
+            ':obs' => !empty($observaciones) ? $observaciones : null
+        ]);
+
+        // 2. Si se marcó intensificación
+        if ($chk_intensificacion && $id_periodo_int > 0) {
+            $stmtCheck = $pdo->prepare("SELECT id FROM intensificaciones WHERE id_alumno = :al AND id_curso_materia = :cmd AND id_periodo = :per");
+            $stmtCheck->execute([':al' => $id_alumno, ':cmd' => $id_curso_materia, ':per' => $id_periodo_int]);
+            if (!$stmtCheck->fetch()) {
+                $stmtInt = $pdo->prepare("
+                    INSERT INTO intensificaciones (id_alumno, id_curso_materia, id_periodo, motivo, id_estado_materia)
+                    VALUES (:al, :cmd, :per, :motivo, :estado)
+                ");
+                $stmtInt->execute([
+                    ':al' => $id_alumno,
+                    ':cmd' => $id_curso_materia,
+                    ':per' => $id_periodo_int,
+                    ':motivo' => !empty($motivo_int) ? $motivo_int : 'Período de intensificación académica',
+                    ':estado' => $id_estado_materia
+                ]);
+            }
+        }
+
+        // 3. Si se marcó recursada
+        if ($chk_recursada) {
+            $stmtMat = $pdo->prepare("SELECT id_materia FROM curso_materia_docente WHERE id = :cmd");
+            $stmtMat->execute([':cmd' => $id_curso_materia]);
+            $id_materia = $stmtMat->fetchColumn();
+
+            if ($id_materia) {
+                $ciclo_actual = $pdo->query("SELECT id FROM ciclos_lectivos WHERE activo = 1 LIMIT 1")->fetchColumn() ?: 1;
+                
+                $stmtCheckRec = $pdo->prepare("SELECT id FROM recursadas WHERE id_alumno = :al AND id_materia = :mat AND id_ciclo_original = :cic");
+                $stmtCheckRec->execute([':al' => $id_alumno, ':mat' => $id_materia, ':cic' => $ciclo_actual]);
+                if (!$stmtCheckRec->fetch()) {
+                    $stmtRec = $pdo->prepare("
+                        INSERT INTO recursadas (id_alumno, id_materia, id_ciclo_original, id_ciclo_recursada, id_curso_recursada, motivo)
+                        VALUES (:al, :mat, :cic, :cic_rec, :cur_rec, :motivo)
+                    ");
+                    $stmtRec->execute([
+                        ':al' => $id_alumno,
+                        ':mat' => $id_materia,
+                        ':cic' => $ciclo_actual,
+                        ':cic_rec' => $ciclo_actual,
+                        ':cur_rec' => $id_curso_sel,
+                        ':motivo' => !empty($motivo_rec) ? $motivo_rec : 'Debe recursar la materia'
+                    ]);
+                }
+            }
+        }
+
+        // 4. Registrar en Auditoría
+        $stmtAud = $pdo->prepare("
+            INSERT INTO auditoria (id_usuario, accion, tabla_afectada, id_registro, ip_origen)
+            VALUES (:usr, 'ACTUALIZAR_TRAYECTORIA', 'trayectorias', :reg, :ip)
+        ");
+        $stmtAud->execute([
+            ':usr' => $id_docente,
+            ':reg' => $id_alumno,
+            ':ip' => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1'
+        ]);
+
+        $pdo->commit();
+        return [
+            'success' => true,
+            'mensaje' => 'La trayectoria del alumno fue actualizada con éxito.'
+        ];
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        return [
+            'success' => false,
+            'mensaje' => 'Error al actualizar trayectoria: ' . $e->getMessage()
+        ];
+    }
+}

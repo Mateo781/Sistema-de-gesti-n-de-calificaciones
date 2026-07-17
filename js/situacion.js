@@ -221,19 +221,23 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRecoveryList();
 
   // Mobile sidebar toggle callback
-  const hamburger = $('hamburger');
+  const hamburger = $('menuToggle') || $('hamburger');
   const sidebar = $('sidebar');
-  const overlay = $('overlay');
+  const overlay = $('sidebarOverlay') || $('overlay');
 
   if (hamburger && sidebar && overlay) {
     hamburger.addEventListener('click', () => {
       sidebar.classList.add('open');
+      overlay.classList.add('open');
       overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
     });
 
     overlay.addEventListener('click', () => {
       sidebar.classList.remove('open');
+      overlay.classList.remove('open');
       overlay.classList.remove('show');
+      document.body.style.overflow = '';
     });
   }
 });

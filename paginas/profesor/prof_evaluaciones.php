@@ -216,21 +216,8 @@ if ($curso_sel > 0) {
 }
 ?>
 
-<main class="main">
-    <header class="topbar">
-        <div class="topbar-container">
-            <div class="topbar-left">
-                <div class="header-title-block">
-                    <h1 class="header-title">Registro de Calificaciones</h1>
-                    <div class="header-breadcrumb">
-                        <span class="breadcrumb-year">Panel Docente</span>
-                        <span class="breadcrumb-sep">•</span>
-                        <span class="breadcrumb-division">Ingreso de Notas</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+<main class="main-content main">
+    <?php include_once dirname(__DIR__, 2) . '/includes/topbar.php'; ?>
 
     <div class="dashboard-content">
 

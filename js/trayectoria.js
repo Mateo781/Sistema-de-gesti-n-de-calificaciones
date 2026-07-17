@@ -224,3 +224,24 @@ wrapper.addEventListener('mousemove', e => {
   const x = e.pageX - wrapper.offsetLeft;
   wrapper.scrollLeft = scrollLeft - (x - startX) * 1.2;
 });
+
+// Mobile sidebar toggle callback
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('menuToggle') || document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay') || document.getElementById('overlay');
+
+  if (toggle && sidebar && overlay) {
+    toggle.addEventListener('click', () => {
+      sidebar.classList.add('open');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+});

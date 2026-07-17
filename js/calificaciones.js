@@ -421,18 +421,28 @@ function initExport() {
 
 function initMobileSidebar() {
   const sidebar = $('sidebar');
-  const overlay = $('overlay');
-  const ham     = $('hamburger');
+  const overlay = $('sidebarOverlay') || $('overlay');
+  const ham     = $('menuToggle') || $('hamburger');
   if (!sidebar || !overlay) return;
 
-  const open  = () => { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; };
-  const close = () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; };
+  const open  = () => { 
+    sidebar.classList.add('open'); 
+    overlay.classList.add('open');
+    overlay.classList.add('show'); 
+    document.body.style.overflow = 'hidden'; 
+  };
+  const close = () => { 
+    sidebar.classList.remove('open'); 
+    overlay.classList.remove('open');
+    overlay.classList.remove('show'); 
+    document.body.style.overflow = ''; 
+  };
   
   ham?.addEventListener('click', open);
   overlay?.addEventListener('click', close);
   
-  document.querySelectorAll('.nav-link').forEach(l => {
-    l.addEventListener('click', () => { if (window.innerWidth < 860) close(); });
+  document.querySelectorAll('.nav-link, .nav-item').forEach(l => {
+    l.addEventListener('click', () => { if (window.innerWidth < 900) close(); });
   });
 }
 

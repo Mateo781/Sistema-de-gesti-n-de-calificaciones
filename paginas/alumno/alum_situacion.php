@@ -1,27 +1,5 @@
-<main class="main">
-
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="topbar-left">
-      <button class="hamburger" id="hamburger" aria-label="Menú">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="page-heading">
-        <h1 class="page-title">Situación Académica</h1>
-        <div class="page-meta">
-          <span class="meta-chip">Ciclo Lectivo Activo: 2026</span>
-          <span class="meta-dot">·</span>
-          <span class="meta-text">Orientación Programación</span>
-        </div>
-      </div>
-    </div>
-    <div class="topbar-right">
-      <button class="btn-export" id="btnExport">
-        <svg viewBox="0 0 16 16" width="13" height="13" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M2.5 12h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        <span>Descargar Analítico</span>
-      </button>
-    </div>
-  </header>
+<main class="main-content main">
+  <?php include_once dirname(__DIR__, 2) . '/includes/topbar.php'; ?>
 
   <!-- ═══ CONTENT ═══ -->
   <div class="content">
