@@ -1,0 +1,231 @@
+@import url('../variables.css');
+
+/* ── CONTENEDOR GENERAL ───────────────────────────────────── */
+.auth-panel-wrapper {
+  padding: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  box-sizing: border-box;
+}
+
+.auth-panel {
+  width: 100%;
+  max-width: 100%;
+  background: var(--card, #ffffff);
+  border: 1px solid var(--border, #e8eaf0);
+  border-radius: var(--r-xl, 20px);
+  box-shadow: var(--shadow-md, 0 4px 16px rgba(15,31,75,.09));
+  padding: 36px 40px;
+  animation: fadeUp 350ms var(--ease, cubic-bezier(.4,0,.2,1)) both;
+  box-sizing: border-box;
+}
+
+.form-header {
+  border-bottom: 1px solid var(--border-soft, #f0f2f7);
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  color: var(--t1, #0d1830);
+  letter-spacing: -.3px;
+  margin: 0;
+}
+
+.form-subtitle {
+  font-size: 13.5px;
+  color: var(--t2, #4a5468);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── ALERTAS ──────────────────────────────────────────────── */
+.alert-info {
+  background: var(--green-bg, #eaf6ef);
+  color: var(--green-t, #155e2e);
+  border: 1px solid rgba(31, 140, 69, 0.2);
+  padding: 16px 20px;
+  border-radius: var(--r-md, 12px);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+/* ── LISTA Y TARJETAS DE PROPUESTAS ───────────────────────── */
+.proposals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.proposal-card {
+  background: var(--page, #f4f6fb);
+  border: 1px solid var(--border, #e8eaf0);
+  border-radius: var(--r-lg, 16px);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color var(--dur, 180ms) var(--ease, cubic-bezier(.4,0,.2,1));
+}
+
+.proposal-card:hover {
+  border-color: rgba(37, 87, 214, 0.3);
+}
+
+.proposal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.proposal-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1, #0d1830);
+  margin: 0;
+}
+
+.proposal-meta {
+  font-size: 12.5px;
+  color: var(--t3, #9aa0b0);
+  margin: 0;
+}
+
+.proposal-meta strong {
+  color: var(--t2, #4a5468);
+}
+
+.proposal-description {
+  background: var(--card, #ffffff);
+  border: 1px solid var(--border-soft, #f0f2f7);
+  border-radius: var(--r-sm, 8px);
+  padding: 14px 16px;
+  font-size: 13.5px;
+  color: var(--t2, #4a5468);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+/* ── FORMULARIO Y CAMPOS ──────────────────────────────────── */
+.proposal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-soft, #f0f2f7);
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--t1, #0d1830);
+}
+
+.form-textarea {
+  width: 100%;
+  background: var(--card, #ffffff);
+  border: 1px solid var(--border, #e8eaf0);
+  border-radius: var(--r-sm, 8px);
+  padding: 12px;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--t1, #0d1830);
+  resize: vertical;
+  transition: all var(--dur, 180ms) var(--ease, cubic-bezier(.4,0,.2,1));
+  box-sizing: border-box;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent, #2557d6);
+  box-shadow: 0 0 0 3px rgba(37, 87, 214, 0.12);
+}
+
+/* ── BOTONES DE ACCIÓN ────────────────────────────────────── */
+.proposal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: var(--r-sm, 8px);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all var(--dur, 180ms) var(--ease, cubic-bezier(.4,0,.2,1));
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.btn-success {
+  background: var(--green, #1f8c45);
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  background: var(--green-hover, #187137);
+}
+
+.btn-danger {
+  background: var(--red, #c0302b);
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background: var(--red-hover, #a22622);
+}
+
+/* ── ANIMACIÓN DE ENTRADA ─────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .auth-panel-wrapper {
+    padding: 16px;
+  }
+
+  .auth-panel {
+    padding: 24px 20px;
+    border-radius: var(--r-lg, 16px);
+  }
+
+  .form-title {
+    font-size: 20px;
+  }
+
+  .proposal-actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}

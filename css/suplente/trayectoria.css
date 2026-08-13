@@ -1,0 +1,7 @@
+@import url('trayectoria/base/reset.css');
+
+@import url('trayectoria/layout/container.css');
+
+@import url('trayectoria/components/timeline.css');
+@import url('trayectoria/components/legend.css');
+@import url('trayectoria/components/detail-panel.css');

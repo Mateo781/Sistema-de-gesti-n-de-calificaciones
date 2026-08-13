@@ -1,0 +1,217 @@
+.top-header {
+  height: var(--header-height);
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-sizing: border-box; /* Evita que el padding deforme el alto total */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+
+}
+
+.header-left { 
+  display: flex; 
+  align-items: center; 
+  gap: 14px; 
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.menu-toggle:hover { background: var(--bg-page); }
+
+.header-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.header-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.header-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1px;
+}
+
+.breadcrumb-year {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--brand-accent);
+  background: var(--brand-soft);
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+.breadcrumb-sep { color: var(--text-muted); font-size: 12px; }
+.breadcrumb-division { font-size: 11px; color: var(--text-secondary); }
+
+/* --- CONTENEDOR DERECHO FLEXIBLE --- */
+.header-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 16px; 
+}
+
+.header-meta { 
+  display: flex; 
+  flex-direction: row; /* CAMBIADO: Ahora el ciclo y los filtros van uno al lado del otro */
+  align-items: center; 
+  gap: 12px; 
+}
+
+.ciclo-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand-light);
+  background: var(--brand-soft);
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid rgba(37,80,168,.15);
+}
+
+/* --- NUEVAS CLASES PARA LAS PESTAÑAS CUATRIMESTRE --- */
+.filter-tabs {
+  display: flex;
+  background-color: var(--bg-page);
+  padding: 3px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  gap: 2px;
+}
+
+.tab-btn {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.tab-btn.active {
+  background-color: var(--bg-card);
+  color: var(--brand-accent);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* ── ESTILOS ADICIONALES PARA EL TOPBAR Y EL BOTÓN HAMBURGUESA ────────── */
+.top-header {
+  height: var(--header-height, 74px);
+  background: var(--card, #ffffff);
+  border-bottom: 1px solid var(--border, #e8eaf0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* Botón de hamburguesa integrado */
+.menu-toggle {
+  display: none; /* Oculto en PC por defecto */
+  background: var(--card, #ffffff);
+  border: 1px solid var(--border, #e8eaf0);
+  border-radius: var(--r-sm, 8px);
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--t1, #0d1830);
+  transition: all var(--dur, 180ms) var(--ease, cubic-bezier(.4,0,.2,1));
+  flex-shrink: 0;
+}
+
+.menu-toggle:hover {
+  background: var(--accent-light, #eef2fd);
+  color: var(--accent, #2557d6);
+  border-color: var(--accent, #2557d6);
+}
+
+.menu-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.header-title-block {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1, #0d1830);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-breadcrumb {
+  font-size: 11.5px;
+  color: var(--t3, #9aa0b0);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1px;
+}
+
+.breadcrumb-sep {
+  opacity: 0.5;
+}
+
+/* Responsive: Mostramos el botón en pantallas medianas y chicas */
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-header {
+    padding: 0 16px;
+  }
+  .header-title {
+    font-size: 14px;
+  }
+}

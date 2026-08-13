@@ -1,0 +1,29 @@
+.timeline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary, #666);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.legend-dot.green  { background: #639922; }
+.legend-dot.yellow { background: #ba7517; }
+.legend-dot.red    { background: #a32d2d; }
+.legend-dot.cyan   { background: #0f6e56; }
+.legend-dot.gray   { background: var(--color-border-tertiary, #ccc); }

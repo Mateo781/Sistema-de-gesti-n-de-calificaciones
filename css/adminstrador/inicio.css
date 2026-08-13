@@ -1,0 +1,208 @@
+/* ── CONTENEDOR GENERAL (Igual a admin_usuarios y admin_cursos) ── */
+.auth-panel-wrapper {
+  padding: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  box-sizing: border-box;
+}
+
+.auth-panel {
+  width: 100%;
+  max-width: 100%;
+  background: var(--card, #ffffff);
+  border: 1px solid var(--border, #e8eaf0);
+  border-radius: var(--r-xl, 20px);
+  box-shadow: var(--shadow-md, 0 4px 16px rgba(15,31,75,.09));
+  padding: 36px 40px;
+  animation: fadeUp 350ms var(--ease, cubic-bezier(.4,0,.2,1)) both;
+  box-sizing: border-box;
+}
+
+.form-header {
+  border-bottom: 1px solid var(--border-soft, #f0f2f7);
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  color: var(--t1, #0d1830);
+  letter-spacing: -.3px;
+  margin: 0;
+}
+
+.form-subtitle {
+  font-size: 13.5px;
+  color: var(--t2, #4a5468);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── HEADER ESPECÍFICO DEL INICIO ─────────────────────────── */
+.dashboard-hero-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.hero-intro {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.meta-card {
+  background: var(--page, #f4f6fb);
+  border: 1px solid var(--border, #e8eaf0);
+  border-radius: var(--r-md, 12px);
+  padding: 12px 16px;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--t3, #9aa0b0);
+}
+
+.meta-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t1, #0d1830);
+}
+
+.status-online {
+  color: var(--green-t, #155e2e);
+}
+
+/* ── GRILLA DE ACCESOS RÁPIDOS ────────────────────────────── */
+.dashboard-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.quick-card {
+  background: var(--page, #f4f6fb);
+  border: 1px solid var(--border, #e8eaf0);
+  border-radius: var(--r-lg, 16px);
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all var(--dur, 180ms) var(--ease, cubic-bezier(.4,0,.2,1));
+  box-sizing: border-box;
+}
+
+.quick-card:hover {
+  border-color: var(--accent, #2557d6);
+  box-shadow: 0 4px 12px rgba(37, 87, 214, 0.08);
+  transform: translateY(-2px);
+}
+
+.quick-icon {
+  font-size: 24px;
+  background: var(--card, #ffffff);
+  border: 1px solid var(--border, #e8eaf0);
+  border-radius: var(--r-md, 12px);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quick-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.quick-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--t1, #0d1830);
+  margin: 0;
+}
+
+.quick-desc {
+  font-size: 13px;
+  color: var(--t2, #4a5468);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.quick-link {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent, #2557d6);
+  text-decoration: none;
+  margin-top: 6px;
+  display: inline-block;
+  transition: color var(--dur, 180ms);
+}
+
+.quick-link:hover {
+  color: var(--accent-hover, #1b44b5);
+  text-decoration: underline;
+}
+
+/* ── ANIMACIÓN DE ENTRADA ─────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .auth-panel-wrapper {
+    padding: 16px;
+  }
+
+  .auth-panel {
+    padding: 24px 20px;
+    border-radius: var(--r-lg, 16px);
+  }
+
+  .dashboard-hero-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-meta {
+    width: 100%;
+  }
+
+  .meta-card {
+    flex: 1;
+  }
+}

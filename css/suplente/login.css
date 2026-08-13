@@ -1,0 +1,251 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --sidebar-bg:#0f1f4b;
+  --accent:#2557d6;
+  --accent-light:#eef2fd;
+  --accent-mid:#4070e8;
+  --green:#1f8c45;--green-bg:#eaf6ef;--green-t:#155e2e;
+  --red:#c0302b;--red-bg:#fdecea;--red-t:#8c1f1c;
+  --page:#f4f6fb;
+  --card:#ffffff;
+  --border:#e8eaf0;
+  --border-soft:#f0f2f7;
+  --t1:#0d1830;--t2:#4a5468;--t3:#9aa0b0;
+  --shadow-xs:0 1px 3px rgba(15,31,75,.06);
+  --shadow-sm:0 2px 8px rgba(15,31,75,.07);
+  --shadow-md:0 4px 16px rgba(15,31,75,.09);
+  --shadow-lg:0 8px 28px rgba(15,31,75,.13);
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;
+  --ease:cubic-bezier(.4,0,.2,1);--dur:180ms;
+}
+
+html,body{height:100%;font-family:'DM Sans',system-ui,sans-serif;background:var(--page);color:var(--t1)}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+input,select{font-family:inherit}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:#ccd3e0;border-radius:99px}
+
+/* Estructura general */
+.auth-shell{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 480px;
+}
+
+/* Panel Izquierdo */
+.auth-brand{
+  background:var(--sidebar-bg);
+  display:flex;flex-direction:column;
+  padding:52px 56px;
+  position:relative;overflow:hidden;
+}
+.auth-brand::before{
+  content:'';
+  position:absolute;top:-120px;right:-80px;
+  width:500px;height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(37,87,214,.25) 0%,transparent 70%);
+  pointer-events:none;
+}
+.auth-brand::after{
+  content:'';
+  position:absolute;bottom:-80px;left:-60px;
+  width:340px;height:340px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(64,112,232,.15) 0%,transparent 70%);
+  pointer-events:none;
+}
+.brand-logo{
+  display:flex;align-items:center;gap:12px;
+  position:relative;z-index:1;
+}
+.brand-icon{
+  width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent-mid) 100%);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(37,87,214,.4);
+}
+.brand-name{
+  font-family:'DM Serif Display',serif;
+  font-size:22px;color:#fff;letter-spacing:-.3px;
+}
+.brand-name span{opacity:.55;font-size:12px;font-family:'DM Sans',sans-serif;display:block;font-weight:500;letter-spacing:.4px;margin-top:1px}
+.brand-body{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:1;
+  padding:0 0 40px;
+}
+.brand-tagline{
+  font-family:'DM Serif Display',serif;
+  font-size:36px;line-height:1.15;color:#fff;
+  letter-spacing:-.5px;margin-bottom:18px;
+  max-width:380px;
+}
+.brand-tagline em{font-style:normal;color:rgba(37,87,214,.8);
+  background:linear-gradient(90deg,#6390f0,#a8bfff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.brand-sub{
+  font-size:15px;color:rgba(255,255,255,.55);
+  line-height:1.6;max-width:340px;
+}
+.brand-features{
+  display:flex;flex-direction:column;gap:14px;
+  position:relative;z-index:1;
+}
+.feat-item{display:flex;align-items:center;gap:12px}
+.feat-ico{
+  width:34px;height:34px;border-radius:9px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.feat-ico svg{width:16px;height:16px;color:rgba(255,255,255,.7)}
+.feat-text{font-size:13px;font-weight:500;color:rgba(255,255,255,.6)}
+
+/* Panel Derecho */
+.auth-panel{
+  background:var(--card);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:48px 52px;
+  overflow-y:auto;
+}
+.auth-tabs{
+  display:flex;gap:0;
+  background:var(--page);
+  border-radius:var(--r-lg);
+  padding:4px;margin-bottom:32px;
+  width:100%;
+}
+.auth-tab{
+  flex:1;padding:10px 0;
+  border:none;background:none;
+  border-radius:var(--r-md);
+  font-size:13px;font-weight:700;
+  color:var(--t3);
+  transition:all var(--dur) var(--ease);
+}
+.auth-tab.active{
+  background:var(--card);
+  color:var(--accent);
+  box-shadow:var(--shadow-sm);
+}
+.auth-tab:hover:not(.active){color:var(--t1)}
+
+/* Formularios y campos */
+.auth-form-wrap{width:100%;max-width:360px}
+.form-header{margin-bottom:26px}
+.form-title{
+  font-family:'DM Serif Display',serif;
+  font-size:26px;color:var(--t1);letter-spacing:-.4px;
+}
+.form-subtitle{font-size:13px;color:var(--t2);margin-top:5px;line-height:1.5}
+.form-section{display:none;animation:fadeUp 280ms var(--ease) both}
+.form-section.active{display:block}
+.field-group{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11.5px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.5px}
+.input-wrap{position:relative}
+.input-ico{
+  position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  color:var(--t3);pointer-events:none;transition:color var(--dur);
+}
+.input-ico svg{width:15px;height:15px}
+.field-input{
+  width:100%;height:42px;
+  border:1.5px solid var(--border);
+  border-radius:var(--r-md);
+  padding:0 12px 0 36px;
+  font-size:13.5px;color:var(--t1);
+  background:var(--page);outline:none;
+  transition:border-color var(--dur),background var(--dur),box-shadow var(--dur);
+}
+.field-input:focus{
+  border-color:var(--accent);
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(37,87,214,.1);
+}
+.field-input::placeholder{color:var(--t3)}
+.field-input:focus + .input-ico,
+.input-wrap:focus-within .input-ico{color:var(--accent)}
+
+/* Selector */
+.field-select{
+  width:100%;height:42px;
+  border:1.5px solid var(--border);
+  border-radius:var(--r-md);
+  padding:0 32px 0 12px;
+  font-size:13.5px;color:var(--t1);
+  background:var(--page);outline:none;
+  transition:border-color var(--dur),background var(--dur),box-shadow var(--dur);
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239aa0b0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;
+  cursor:pointer;
+}
+.field-select:focus{
+  border-color:var(--accent);
+  background-color:#fff;
+  box-shadow:0 0 0 3px rgba(37,87,214,.1);
+}
+
+/* Alertas */
+.alert{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:11px 14px;border-radius:var(--r-md);
+  font-size:12.5px;font-weight:500;
+  margin-bottom:16px;line-height:1.4;
+}
+.alert-error{background:var(--red-bg);color:var(--red-t);border:1px solid rgba(192,48,43,.15)}
+.alert-success{background:var(--green-bg);color:var(--green-t);border:1px solid rgba(31,140,69,.15)}
+.alert svg{width:15px;height:15px;flex-shrink:0;margin-top:1px}
+
+/* Checkbox y links */
+.check-row{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);cursor:pointer}
+.check-row label{font-size:12px;color:var(--t2);cursor:pointer}
+.check-row a{color:var(--accent);font-weight:600}
+.forgot-row{display:flex;justify-content:flex-end;margin-top:-8px;margin-bottom:16px}
+.forgot-link{font-size:12px;font-weight:600;color:var(--accent)}
+.forgot-link:hover{text-decoration:underline}
+
+/* Botón principal */
+.btn-submit{
+  width:100%;height:44px;
+  background:var(--sidebar-bg);color:#fff;
+  border:none;border-radius:var(--r-md);
+  font-size:14px;font-weight:700;
+  letter-spacing:.2px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background var(--dur),transform var(--dur),box-shadow var(--dur);
+  box-shadow:0 4px 12px rgba(15,31,75,.2);
+}
+.btn-submit:hover{background:#1a3070;transform:translateY(-1px);box-shadow:0 6px 18px rgba(15,31,75,.28)}
+.btn-submit:active{transform:translateY(0);box-shadow:var(--shadow-md)}
+.btn-submit svg{width:16px;height:16px}
+.auth-footer{text-align:center;margin-top:20px;font-size:12px;color:var(--t3)}
+
+/* Fuerza de contraseña */
+.pw-strength{margin-top:6px;display:flex;gap:4px;align-items:center}
+.pw-bar{flex:1;height:3px;border-radius:99px;background:var(--border);transition:background .3s}
+.pw-label{font-size:10.5px;font-weight:600;color:var(--t3);min-width:40px;text-align:right;transition:color .3s}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Responsive */
+@media(max-width:860px){
+  .auth-shell{grid-template-columns:1fr}
+  .auth-brand{display:none}
+  .auth-panel{padding:32px 24px;justify-content:flex-start;padding-top:48px}
+  .auth-form-wrap{max-width:100%}
+}
+@media(max-width:480px){
+  .field-row{grid-template-columns:1fr}
+}

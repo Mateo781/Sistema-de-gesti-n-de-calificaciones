@@ -1,0 +1,244 @@
+/* ==========================================================================
+   VARIABLES DE ENTORNO VISUAL (Estudiante - Optimizado)
+   ========================================================================== */
+:root {
+    --primary-color: #1a2d5a;    /* Azul institucional profundo */
+    --accent-color: #3b82f6;     /* Azul brillante interactivo */
+    --text-main: #1e293b;        /* Slate 800: Más moderno y legible que el puro gris */
+    --text-muted: #64748b;       /* Slate 500: Perfecto para jerarquía secundaria */
+    --bg-card: #ffffff;          /* Blanco puro */
+    --border-color: #e2e8f0;     /* Gris claro */
+    --bg-input: #f8fafc;         /* Fondo sutil */
+    --pdf-color: #ef4444;        /* Rojo PDF plano, más moderno y vibrante */
+    --pdf-hover: #dc2626;
+    --radius: 12px;              /* Esquinas más suaves y modernas */
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Transiciones fluidas */
+}
+/* Fuerza al contenedor principal de PHP a ocupar todo el ancho disponible */
+.main {
+    flex: 1;          /* Si el padre es Flexbox, esto hace que ocupe el 100% del espacio restante */
+    width: 100%;      /* Asegura el ancho total */
+    min-width: 0;     /* Evita que tablas grandes desborden el layout flex */
+    box-sizing: border-box;
+}
+/* ==========================================================================
+   CONTENEDOR CENTRALIZADO WIDE
+   ========================================================================== */
+.dashboard-content {
+    width: 100%;
+    max-width: 1400px; /* Evita que en pantallas Ultra-Wide se deforme el diseño */
+    margin: 0 auto;
+    padding: 32px 40px;
+    box-sizing: border-box;
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ── BARRA SUPERIOR (TOPBAR) ────────────────────────────── */
+.topbar {
+  height: 62px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+.header-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.header-title {
+    color: var(--primary-color);
+    font-size: 28px; /* Un poco más de presencia */
+    font-weight: 800; /* Estilo tipográfico más fuerte */
+    margin: 0;
+    letter-spacing: -0.025em;
+}
+
+.header-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.breadcrumb-year {
+    font-weight: 600;
+    color: var(--accent-color);
+    background-color: rgba(59, 130, 246, 0.1); /* Badge sutil */
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+/* ==========================================================================
+   TARJETA CONTENEDORA DE LA TABLA
+   ========================================================================== */
+.table-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    /* Sombra difuminada de alta gama (Soft Shadow) */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.table-card h4 {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 16px;
+}
+
+/* ==========================================================================
+   TABLA DE ACTIVIDADES CRONOLÓGICAS (Y su contenedor responsivo)
+   ========================================================================== */
+/* CONTENEDOR CRUCIAL: Evita que la tabla rompa el diseño en pantallas chicas */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: var(--bg-input);
+    color: var(--primary-color);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-table td {
+    padding: 18px 20px; /* Más aire entre filas */
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 15px;
+    line-height: 1.5; /* Mejora drásticamente la lectura de textos largos */
+    vertical-align: middle; /* Cambiado a middle para consistencia visual con botones */
+}
+
+/* Elimina el borde de la última fila para un look más limpio */
+.custom-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.custom-table tbody tr {
+    transition: var(--transition);
+}
+
+.custom-table tbody tr:hover {
+    background-color: #f8fafc; /* Color más limpio para el hover */
+}
+
+/* ==========================================================================
+   BOTÓN REPRODUCTOR / DESCARGA DE PDF
+   ========================================================================== */
+.btn-pdf {
+    background-color: var(--pdf-color);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-pdf:hover {
+    background-color: var(--pdf-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+}
+
+.btn-pdf:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Mobile First / Adaptabilidad real)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .dashboard-content {
+        padding: 20px 16px;
+    }
+    
+    .topbar {
+        padding: 16px 0;
+    }
+
+    .topbar-container {
+        padding: 0 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .header-title {
+        font-size: 22px;
+    }
+    
+    .table-card {
+        padding: 16px;
+        border-radius: 8px;
+    }
+
+    .table-card h4 {
+        font-size: 16px;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+    }
+
+    /* Reducimos el padding interno de la tabla en móviles para maximizar espacio */
+    .custom-table th, .custom-table td {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+}

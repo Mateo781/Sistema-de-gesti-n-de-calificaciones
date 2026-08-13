@@ -1,0 +1,478 @@
+/* ── VARIABLES Y CONFIGURACIÓN BASE ──────────────────────── */
+.main {
+  /* Colores de marca y semánticos */
+  --accent: #2557d6;
+  --accent-light: #eef2fd;
+  
+  --green: #1f8c45;
+  --green-bg: #eaf6ef;
+  --green-t: #155e2e;
+  --yellow: #b07805;
+  --yellow-bg: #fef7e6;
+  --yellow-t: #7a5300;
+  --red: #c0302b;
+  --red-bg: #fdecea;
+  --red-t: #8c1f1c;
+  --cyan: #0d6fa8;
+  --cyan-bg: #e2f2fb;
+  --cyan-t: #085378;
+
+  /* Superficies y textos */
+  --page: #f4f6fb;
+  --card: #ffffff;
+  --row-hover: #f8faff;
+  --border: #e8eaf0;
+  --border-soft: #f0f2f7;
+  --t1: #0d1830;
+  --t2: #4a5468;
+  --t3: #9aa0b0;
+
+  /* Miscelánea */
+  --shadow-xs: 0 1px 3px rgba(15,31,75,.06);
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --ease: cubic-bezier(.4,0,.2,1);
+  --dur: 180ms;
+
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--page);
+  color: var(--t1);
+  
+  /* Layout del contenedor principal */
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ── BARRA SUPERIOR (TOPBAR) ────────────────────────────── */
+.topbar {
+  height: 62px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Botón Hamburguesa */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: var(--r-sm);
+  color: var(--t2);
+  flex-direction: column;
+  gap: 4px;
+  transition: background var(--dur);
+}
+
+.hamburger span {
+  display: block;
+  width: 18px;
+  height: 1.8px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: all var(--dur);
+}
+
+.hamburger:hover {
+  background: var(--border-soft);
+}
+
+/* Títulos y Breadcrumbs */
+.header-title-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -.3px;
+  line-height: 1;
+  margin: 0;
+}
+
+.header-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+}
+
+.breadcrumb-year {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.breadcrumb-sep {
+  color: var(--t3);
+  font-size: 11px;
+}
+
+.breadcrumb-division {
+  font-size: 11px;
+  color: var(--t2);
+}
+
+/* Meta información derecha */
+.header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.ciclo-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+/* ── CONTENEDOR DE CONTENIDO Y GRID ─────────────────────── */
+.content {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Simplificado al no haber columna derecha */
+  gap: 18px;
+  align-items: start;
+}
+
+/* ── TARJETA DE LA TABLA (TABLE CARD) ────────────────────── */
+.table-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  animation: fadeUp 350ms var(--ease) both;
+}
+
+.table-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.table-card-title {
+  font-size: 16px;
+  color: var(--t1);
+  letter-spacing: -.2px;
+  margin: 0;
+}
+
+.table-card-count {
+  font-size: 11px;
+  color: var(--t3);
+  margin-top: 2px;
+  display: block;
+}
+
+/* Pestañas de Cuatrimestre (Tabs) */
+.Cuatri-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--page);
+  border-radius: var(--r-md);
+  padding: 3px;
+}
+
+.Cuatri-tab {
+  padding: 5px 12px;
+  border: none;
+  background: none;
+  border-radius: 9px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--t3);
+  transition: all var(--dur);
+}
+
+.Cuatri-tab:hover {
+  color: var(--t1);
+}
+
+.Cuatri-tab.active {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Estilos de la Tabla */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.eval-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.eval-table thead tr {
+  background: var(--page);
+  border-bottom: 1px solid var(--border);
+}
+
+.eval-table th {
+  padding: 9px 16px;
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--t3);
+  white-space: nowrap;
+}
+
+/* Columnas Ordenables */
+.th-sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--dur);
+}
+
+.th-sortable:hover {
+  color: var(--accent);
+}
+
+.th-sortable.asc .sort-ico path:last-child,
+.th-sortable.desc .sort-ico path:first-child {
+  opacity: 1;
+}
+
+.sort-ico {
+  margin-left: 4px;
+  vertical-align: -2px;
+  flex-shrink: 0;
+}
+
+/* Celdas del Cuerpo */
+.eval-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--t1);
+  vertical-align: middle;
+}
+
+.eval-table tbody tr {
+  transition: background var(--dur);
+}
+
+.eval-table tbody tr:hover {
+  background: var(--row-hover);
+}
+
+.eval-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Clases de utilidad para celdas dinámicas (inyectadas por JS) */
+.td-materia {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.td-tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--t2);
+}
+
+.tipo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.td-nota {
+  font-weight: 700;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.td-nota.alta { color: var(--green); }
+.td-nota.media { color: var(--yellow); }
+.td-nota.baja { color: var(--red); }
+
+.td-fecha {
+  color: var(--t2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.td-Cuatri {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--t3);
+  background: var(--page);
+  padding: 3px 8px;
+  border-radius: 99px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Etiquetas de Estado (Badges) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 99px; /* Mantiene la proporción */
+  padding: 3px 9px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.badge-aprobada { background: var(--green-bg); color: var(--green-t); }
+.badge-aprobada::before { background: var(--green); }
+
+.badge-proceso { background: var(--yellow-bg); color: var(--yellow-t); }
+.badge-proceso::before { background: var(--yellow); }
+
+.badge-desaprobada { background: var(--red-bg); color: var(--red-t); }
+.badge-desaprobada::before { background: var(--red); }
+
+.badge-intensificacion { background: var(--cyan-bg); color: var(--cyan-t); }
+.badge-intensificacion::before { background: var(--cyan); }
+
+/* Estados de Carga y Vacío */
+.td-loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--t3);
+  font-size: 13px;
+}
+
+.td-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--t3);
+  font-size: 13px;
+}
+
+.td-empty svg {
+  display: block;
+  margin: 0 auto 10px;
+  opacity: .3;
+}
+
+/* Pie de Tabla y Paginación */
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 20px;
+  border-top: 1px solid var(--border-soft);
+  background: var(--page);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-note {
+  font-size: 11px;
+  color: var(--t3);
+}
+
+.pagination {
+  display: flex;
+  gap: 4px;
+}
+
+.page-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--t2);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--dur);
+}
+
+.page-btn:hover:not(.active) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.page-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.page-btn:disabled {
+  opacity: .4;
+  pointer-events: none;
+}
+
+/* ── ANIMACIONES ────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .hamburger { display: flex; }
+  .topbar { padding: 0 16px; }
+  .content { padding: 16px; }
+}
+
+@media (max-width: 640px) {
+  .header-breadcrumb { display: none; } /* Oculta migas de pan si el espacio es crítico */
+  .Cuatri-tabs { display: none; }
+}

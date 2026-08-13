@@ -1,0 +1,62 @@
+:root {
+  /* ── COLORES DE ACENTO ───────────────────────────────────── */
+  --accent: #2557d6;
+  --accent-light: #eef2fd;
+  --accent-mid: #4070e8;
+
+  /* ── ESTADOS / SEMÁFORO ──────────────────────────────────── */
+  --green: #1f8c45;
+  --green-bg: #eaf6ef;
+  --green-t: #155e2e;
+
+  --yellow: #b07805;
+  --yellow-bg: #fef7e6;
+  --yellow-t: #7a5300;
+
+  --red: #c0302b;
+  --red-bg: #fdecea;
+  --red-t: #8c1f1c;
+
+  --cyan: #0d6fa8;
+  --cyan-bg: #e2f2fb;
+  --cyan-t: #085378;
+
+  --amber: #c07010;
+  --amber-bg: #fef3e2;
+  --amber-t: #8a4e06;
+
+  /* ── SUPERFICIES Y FONDOS ────────────────────────────────── */
+  --page: #f4f6fb;
+  --card: #ffffff;
+  --row-hover: #f8faff;
+  --border: #e8eaf0;
+  --border-soft: #f0f2f7;
+
+  /* ── TIPOGRAFÍA Y TEXTOS ─────────────────────────────────── */
+  --t1: #0d1830;
+  --t2: #4a5468;
+  --t3: #9aa0b0;
+
+  /* ── SOMBRAS ────────────────────────────────────────────── */
+  --shadow-xs: 0 1px 3px rgba(15, 31, 75, .06);
+  --shadow-sm: 0 2px 8px rgba(15, 31, 75, .07);
+  --shadow-md: 0 4px 16px rgba(15, 31, 75, .09);
+  --shadow-lg: 0 8px 28px rgba(15, 31, 75, .11);
+
+  /* ── RADIOS DE BORDE ────────────────────────────────────── */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+
+  /* ── TRANSICIONES ───────────────────────────────────────── */
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --dur: 180ms;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--page);
+  color: var(--t1);
+  margin: 0;
+}

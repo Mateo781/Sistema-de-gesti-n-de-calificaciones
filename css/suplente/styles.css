@@ -1,0 +1,16 @@
+/* Base & Config */
+@import url('inicio/base/variables.css');
+@import url('inicio/base/resets.css');
+
+/* Layout */
+@import url('inicio/layout/header.css');
+@import url('inicio/layout/main-content.css');
+
+/* Components */
+@import url('inicio/components/summary-cards.css');
+@import url('inicio/components/timeline.css');
+@import url('inicio/components/grades-table.css');
+@import url('inicio/components/right-panel.css');
+@import url('inicio/components/badges-alerts.css');
+
+@import url('navbar.css');

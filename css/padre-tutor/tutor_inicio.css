@@ -1,0 +1,343 @@
+/*General*/
+main {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 28px 25px;
+    background-color: #f1f3f7;
+    min-height: calc(100vh - 70px);
+}
+
+main > h1 {
+    margin: 0 0 22px 0;
+    color: #172033;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.inicio_tutor {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 22px;
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #e1e5eb;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(20, 30, 50, 0.08);
+}
+/*Presentacion*/
+.inicio_tutor:first-of-type > div:first-child {
+    margin-bottom: 12px;
+}
+
+.inicio_tutor:first-of-type h2 {
+    margin: 0;
+    color: #172033;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.inicio_tutor:first-of-type p {
+    margin: 0;
+    color: #7d8999;
+    font-size: 14px;
+    line-height: 1.6;
+}
+/* Conexion padre-tutor con alumnos */
+.inicio_tutor:nth-of-type(2) > p {
+    margin: 0 0 22px 0;
+    color: #172033;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.inicio_tutor:nth-of-type(2) form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+
+.inicio_tutor:nth-of-type(2) .campo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 100%;
+}
+
+.inicio_tutor:nth-of-type(2) label {
+    color: #98a2b1;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+/*Inputs*/
+.input_registro {
+    width: 100%;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 0 14px;
+    border: 1px solid #dce2ea;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #172033;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.input_registro::placeholder {
+    color: #aab2bf;
+}
+
+.input_registro:hover {
+    border-color: #c8d0db;
+}
+
+.input_registro:focus {
+    border-color: #2f6fed;
+    box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.12);
+}
+
+.input_registro[name="dni"] {
+    max-width: 350px;
+}
+/*Boton*/
+.inicio_tutor:nth-of-type(2) .formulario-boton {
+    display: flex;
+    justify-content: start;
+    padding-top: 4px;
+}
+
+.inicio_tutor:nth-of-type(2) button {
+    height: 40px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 10px;
+    background-color: #24618a;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.inicio_tutor:nth-of-type(2) button:hover {
+    background-color: #1d5275;
+}
+
+.inicio_tutor:nth-of-type(2) button:active {
+    transform: translateY(1px);
+}
+/* Calificaciones */
+.inicio_tutor:nth-of-type(2) button {
+    height: 40px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 10px;
+    background-color: #24618a;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.inicio_tutor:nth-of-type(2) button:hover {
+    background-color: #1d5275;
+}
+
+.inicio_tutor:nth-of-type(2) button:active {
+    transform: translateY(1px);
+}
+
+.inicio_tutor:nth-of-type(3) > p {
+    margin: 0 0 20px 0;
+    color: #172033;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.inicio_tutor:nth-of-type(3) > div {
+    min-height: 70px;
+    margin-bottom: 12px;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: #f8f9fb;
+    border: 1px solid #e5e9ef;
+    border-radius: 10px;
+}
+
+.inicio_tutor:nth-of-type(3) > div:last-child {
+    margin-bottom: 0;
+}
+/* Calificaciones */
+#calificacionesAlumno {
+    position: relative;
+}
+
+.calificaciones-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.calificaciones-header p {
+    margin: 0 0 5px 0;
+    color: #98a2b1;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.calificaciones-header h2 {
+    margin: 0;
+    color: #172033;
+    font-size: 20px;
+    font-weight: 700;
+}
+/* Boton */
+#btnVerDetalle {
+    flex-shrink: 0;
+    padding: 10px 16px;
+    border: 1px solid #dce2ea;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #24618a;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+
+#btnVerDetalle:hover {
+    background-color: #f2f6fa;
+    border-color: #24618a;
+}
+/* Orden de Tarjetas */
+.calificaciones-resumen {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+/* Tarjetas */
+.calificacion-card {
+    position: relative;
+    min-height: 125px;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e1e5eb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(20, 30, 50, 0.06);
+}
+
+.calificacion-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 11px;
+}
+
+.calificacion-card > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.calificacion-label {
+    color: #98a2b1;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.calificacion-value {
+    color: #172033;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.calificacion-sub {
+    color: #98a2b1;
+    font-size: 12px;
+}
+
+.calificacion-card.blue {
+    border-bottom: 3px solid #3976e8;
+}
+.calificacion-card.blue .calificacion-icon {
+    background-color: #eaf1ff;
+    color: #3976e8;
+}
+
+.calificacion-card.green {
+    border-bottom: 3px solid #25864a;
+}
+
+.calificacion-card.green .calificacion-icon {
+    background-color: #e8f6ed;
+    color: #25864a;
+}
+
+.calificacion-card.red {
+    border-bottom: 3px solid #df3028;
+}
+
+.calificacion-card.red .calificacion-icon {
+    background-color: #fde9e8;
+    color: #df3028;
+}
+
+.calificacion-card.cyan {
+    border-bottom: 3px solid #167dbb;
+}
+
+.calificacion-card.cyan .calificacion-icon {
+    background-color: #e5f4fc;
+    color: #167dbb;
+}
+/* Responsive*/
+@media (max-width: 700px) {
+
+    .calificaciones-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    #btnVerDetalle {
+        width: 100%;
+    }
+
+    .calificaciones-resumen {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .inicio_tutor:nth-of-type(2) {
+        padding: 20px;
+    }
+
+    .inicio_tutor:nth-of-type(2) .formulario-boton {
+        justify-content: stretch;
+    }
+
+    .inicio_tutor:nth-of-type(2) button {
+        width: 100%;
+    }
+
+}
